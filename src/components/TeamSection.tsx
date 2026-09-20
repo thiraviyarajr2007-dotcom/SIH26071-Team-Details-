@@ -29,7 +29,7 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ members }) => {
       <div className="absolute bottom-1/3 right-1/4 translate-x-1/2 translate-y-1/2 w-[700px] h-[400px] bg-[#138808]/15 rounded-full blur-[150px] pointer-events-none" />
 
       {/* Subtle Ashoka Chakra-inspired background pattern */}
-      <div className="absolute inset-0 ashoka-chakra-pattern-lg pointer-events-none" />
+      <div className="absolute inset-0 ashoka-chakra-pattern pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -71,7 +71,7 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ members }) => {
               <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#FF9933] via-[#FFFFFF] to-[#138808] border-b border-[#000080]" />
               
               {/* Ashoka Chakra-inspired subtle background */}
-              <div className="absolute top-4 right-4 w-32 h-32 opacity-5 ashoka-chakra-pattern-lg" />
+              <div className="absolute top-4 right-4 w-32 h-32 opacity-5 ashoka-chakra-pattern" />
 
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
                 {/* Large Profile Image */}

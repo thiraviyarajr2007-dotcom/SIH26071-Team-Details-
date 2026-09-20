@@ -138,129 +138,27 @@
   box-shadow: 0 25px 50px -12px rgba(0, 0, 128, 0.28);
 }
 
-/* Enhanced Ashoka Chakra geometric pattern utilities */
+/* Simple subtle radial gradient pattern */
 .ashoka-chakra-pattern {
   background-image: 
-    /* Outer ring - Navy Blue */
-    radial-gradient(circle at 50% 50%, #000080 40%, transparent 41%),
-    /* Middle ring - White for separation */
-    radial-gradient(circle at 50% 50%, #FFFFFF 48%, transparent 49%),
-    /* Inner ring - Navy Blue */
-    radial-gradient(circle at 50% 50%, #000080 55%, transparent 56%),
-    /* Center circle - White */
-    radial-gradient(circle at 50% 50%, #FFFFFF 58%, transparent 59%),
-    /* 24-spoke pattern using conic gradient */
-    conic-gradient(from 0deg at 50% 50%, 
-      transparent 0deg, #000080 7.5deg, transparent 15deg,
-      transparent 22.5deg, #000080 30deg, transparent 37.5deg,
-      transparent 45deg, #000080 52.5deg, transparent 60deg,
-      transparent 67.5deg, #000080 75deg, transparent 82.5deg,
-      transparent 90deg, #000080 97.5deg, transparent 105deg,
-      transparent 112.5deg, #000080 120deg, transparent 127.5deg,
-      transparent 135deg, #000080 142.5deg, transparent 150deg,
-      transparent 157.5deg, #000080 165deg, transparent 172.5deg,
-      transparent 180deg, #000080 187.5deg, transparent 195deg,
-      transparent 202.5deg, #000080 210deg, transparent 217.5deg,
-      transparent 225deg, #000080 232.5deg, transparent 240deg,
-      transparent 247.5deg, #000080 255deg, transparent 262.5deg,
-      transparent 270deg, #000080 277.5deg, transparent 285deg,
-      transparent 292.5deg, #000080 300deg, transparent 307.5deg,
-      transparent 315deg, #000080 322.5deg, transparent 330deg,
-      transparent 337.5deg, #000080 345deg, transparent 352.5deg
-    ),
-    /* Saffron accent spokes */
-    conic-gradient(from 90deg at 50% 50%, 
-      transparent 0deg, #FF9933 7.5deg, transparent 15deg,
-      transparent 97.5deg, #FF9933 105deg, transparent 112.5deg,
-      transparent 202.5deg, #FF9933 210deg, transparent 217.5deg,
-      transparent 307.5deg, #FF9933 315deg, transparent 322.5deg
-    ),
-    /* Green accent spokes */
-    conic-gradient(from 180deg at 50% 50%, 
-      transparent 0deg, #138808 7.5deg, transparent 15deg,
-      transparent 97.5deg, #138808 105deg, transparent 112.5deg,
-      transparent 202.5deg, #138808 210deg, transparent 217.5deg,
-      transparent 307.5deg, #138808 315deg, transparent 322.5deg
-    );
-  background-size: 80px 80px;
-  opacity: 0.05;
+    radial-gradient(circle at 50% 50%, #000080 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, #000080 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  opacity: 0.03;
 }
 
 .ashoka-chakra-pattern-lg {
   background-image: 
-    /* Large outer ring */
-    radial-gradient(circle at 50% 50%, #000080 35%, transparent 36%),
-    /* Large separation ring */
-    radial-gradient(circle at 50% 50%, #FFFFFF 42%, transparent 43%),
-    /* Large inner ring */
-    radial-gradient(circle at 50% 50%, #000080 48%, transparent 49%),
-    /* Large center */
-    radial-gradient(circle at 50% 50%, #FFFFFF 50%, transparent 51%),
-    /* 24-spoke large pattern */
-    conic-gradient(from 0deg at 50% 50%, 
-      transparent 0deg, #000080 7.5deg, transparent 15deg,
-      transparent 22.5deg, #000080 30deg, transparent 37.5deg,
-      transparent 45deg, #000080 52.5deg, transparent 60deg,
-      transparent 67.5deg, #000080 75deg, transparent 82.5deg,
-      transparent 90deg, #000080 97.5deg, transparent 105deg,
-      transparent 112.5deg, #000080 120deg, transparent 127.5deg,
-      transparent 135deg, #000080 142.5deg, transparent 150deg,
-      transparent 157.5deg, #000080 165deg, transparent 172.5deg,
-      transparent 180deg, #000080 187.5deg, transparent 195deg,
-      transparent 202.5deg, #000080 210deg, transparent 217.5deg,
-      transparent 225deg, #000080 232.5deg, transparent 240deg,
-      transparent 247.5deg, #000080 255deg, transparent 262.5deg,
-      transparent 270deg, #000080 277.5deg, transparent 285deg,
-      transparent 292.5deg, #000080 300deg, transparent 307.5deg,
-      transparent 315deg, #000080 322.5deg, transparent 330deg,
-      transparent 337.5deg, #000080 345deg, transparent 352.5deg
-    ),
-    /* Large saffron accents */
-    conic-gradient(from 90deg at 50% 50%, 
-      transparent 0deg, #FF9933 7.5deg, transparent 15deg,
-      transparent 97.5deg, #FF9933 105deg, transparent 112.5deg,
-      transparent 202.5deg, #FF9933 210deg, transparent 217.5deg,
-      transparent 307.5deg, #FF9933 315deg, transparent 322.5deg
-    ),
-    /* Large green accents */
-    conic-gradient(from 180deg at 50% 50%, 
-      transparent 0deg, #138808 7.5deg, transparent 15deg,
-      transparent 97.5deg, #138808 105deg, transparent 112.5deg,
-      transparent 202.5deg, #138808 210deg, transparent 217.5deg,
-      transparent 307.5deg, #138808 315deg, transparent 322.5deg
-    );
-  background-size: 120px 120px;
-  opacity: 0.06;
+    radial-gradient(circle at 50% 50%, #000080 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, #000080 1px, transparent 1px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+  opacity: 0.04;
 }
 
 .ashoka-chakra-gradient {
-  background: 
-    radial-gradient(circle at 50% 50%, #000080 0%, transparent 50%),
-    conic-gradient(from 0deg at 50% 50%, 
-      transparent 0deg, #FF9933 15deg, transparent 30deg,
-      transparent 30deg, #FFFFFF 45deg, transparent 60deg,
-      transparent 60deg, #138808 75deg, transparent 90deg,
-      transparent 90deg, #000080 105deg, transparent 120deg,
-      transparent 120deg, #FF9933 135deg, transparent 150deg,
-      transparent 150deg, #FFFFFF 165deg, transparent 180deg,
-      transparent 180deg, #138808 195deg, transparent 210deg,
-      transparent 210deg, #000080 225deg, transparent 240deg,
-      transparent 240deg, #FF9933 255deg, transparent 270deg,
-      transparent 270deg, #FFFFFF 285deg, transparent 300deg,
-      transparent 300deg, #138808 315deg, transparent 330deg,
-      transparent 330deg, #000080 345deg, transparent 360deg
-    );
-  background-size: 200% 200%;
-  animation: chakra-rotate 30s linear infinite;
-}
-
-@keyframes chakra-rotate {
-  from {
-    background-position: 0% 50%;
-  }
-  to {
-    background-position: 200% 50%;
-  }
+  background: radial-gradient(circle at 50% 50%, rgba(0, 0, 128, 0.05) 0%, transparent 70%);
 }
 
 /* Premium micro-interactions */
