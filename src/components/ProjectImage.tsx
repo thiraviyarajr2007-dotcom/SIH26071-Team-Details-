@@ -22,6 +22,13 @@ export const ProjectImage: React.FC<ProjectImageProps> = ({
 }) => {
   const [hasError, setHasError] = useState(false);
 
+  const resolvedSrc = (() => {
+    if (!src || /^https?:\/\//i.test(src) || src.startsWith('data:')) {
+      return src;
+    }
+    return `${import.meta.env.BASE_URL}${src.replace(/^\//, '')}`;
+  })();
+
   if (hasError || !src) {
     if (fallbackType === 'team' || fallbackType === 'mentor') {
       return (
@@ -114,7 +121,7 @@ export const ProjectImage: React.FC<ProjectImageProps> = ({
 
   return (
     <img
-      src={src}
+      src={resolvedSrc}
       alt={alt}
       onError={() => setHasError(true)}
       className={`${className} object-cover`}

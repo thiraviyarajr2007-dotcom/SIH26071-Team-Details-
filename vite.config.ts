@@ -1,11 +1,25 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
+import {copyFileSync, writeFileSync} from 'fs';
 import path from 'path';
 import {defineConfig} from 'vite';
 
-export default defineConfig(() => {
+const githubPagesBase = '/SIH26071-Team-Details-/';
+
+export default defineConfig(({command}) => {
   return {
-    plugins: [react(), tailwindcss()],
+    base: command === 'build' ? githubPagesBase : '/',
+    plugins: [
+      react(),
+      tailwindcss(),
+      {
+        name: 'github-pages-spa',
+        closeBundle() {
+          writeFileSync(path.resolve('dist/.nojekyll'), '');
+          copyFileSync(path.resolve('dist/index.html'), path.resolve('dist/404.html'));
+        },
+      },
+    ],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
