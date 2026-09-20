@@ -1,0 +1,6 @@
+{
+  "name": "SIH Project Showcase",
+  "description": "National-level Smart India Hackathon 2026 project showcase website designed for judges with technical documentation and visual spotlight.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

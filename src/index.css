@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme {
+  --color-saffron: #FF9933;
+  --color-flag-white: #FFFFFF;
+  --color-india-green: #138808;
+  --color-chakra-navy: #000080;
+}
+
+@layer base {
+  body {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #FFFFFF;
+    color: #000080;
+  }
+  
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Indian Flag / Tiranga Theme Gradient Accents */
+.tricolor-border {
+  border-image: linear-gradient(to right, #FF9933 33%, #000080 33%, #000080 66%, #138808 66%) 1;
+}
+
+.tricolor-top-bar {
+  background: linear-gradient(90deg, #FF9933 0%, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%, #138808 100%);
+}
+
+.tricolor-full-bar {
+  background: linear-gradient(90deg, #FF9933 0%, #FFFFFF 50%, #138808 100%);
+}
+
+/* Subtle Ashoka Chakra rotation */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 24s linear infinite;
+}
+
+/* Custom scrollbar in flag colors */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FFFFFF;
+}
+::-webkit-scrollbar-thumb {
+  background: #000080;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF9933;
+}
+
+/* Replace Tailwind default black/gray shadows with Ashoka Chakra navy */
+.shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 128, 0.14);
+}
+.shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 128, 0.14), 0 2px 4px -2px rgba(0, 0, 128, 0.1);
+}
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 128, 0.16), 0 4px 6px -4px rgba(0, 0, 128, 0.1);
+}
+.shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 128, 0.16), 0 8px 10px -6px rgba(0, 0, 128, 0.1);
+}
+.shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 128, 0.28);
+}
+
+
