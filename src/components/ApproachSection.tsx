@@ -12,8 +12,11 @@ import {
   CloudLightning,
   ChevronRight,
   Zap,
+  AlertTriangle,
+  Activity,
 } from 'lucide-react';
 import { WorkflowStep } from '../types';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 interface ApproachSectionProps {
   workflow: WorkflowStep[];
@@ -30,18 +33,31 @@ const iconComponentMap: Record<string, React.ElementType> = {
   Layers,
   ShieldCheck,
   CloudLightning,
+  Activity,
+  AlertTriangle,
+  Zap,
 };
 
 export const ApproachSection: React.FC<ApproachSectionProps> = ({ workflow }) => {
   const [selectedStepIndex, setSelectedStepIndex] = useState<number>(0);
+  const [sectionRef, isSectionVisible] = useScrollAnimation({ threshold: 0.1 });
 
   const activeStep = workflow[selectedStepIndex] || workflow[0];
   const IconComponent = iconComponentMap[activeStep.iconName] || Zap;
 
   return (
-    <section id="approach" className="py-20 bg-[#FFFFFF] relative border-t-2 border-[#000080]/15">
+    <section 
+      id="approach" 
+      ref={sectionRef}
+      className={`py-20 bg-[#FFFFFF] relative border-t-2 border-[#000080]/15 transition-all duration-700 ${
+        isSectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+      }`}
+    >
       {/* Ambient background glows */}
       <div className="absolute top-1/3 right-10 w-96 h-96 bg-[#FF9933]/15 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Subtle Ashoka Chakra-inspired background pattern */}
+      <div className="absolute inset-0 ashoka-chakra-pattern pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}

@@ -1,16 +1,28 @@
 import React from 'react';
 import { AlertCircle, Building2, Tag, Layers, Hash, BookOpen } from 'lucide-react';
 import { ProblemStatementData } from '../types';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 interface ProblemSectionProps {
   problemData: ProblemStatementData;
 }
 
 export const ProblemSection: React.FC<ProblemSectionProps> = ({ problemData }) => {
+  const [sectionRef, isSectionVisible] = useScrollAnimation({ threshold: 0.1 });
+
   return (
-    <section id="problem" className="py-20 bg-[#FFFFFF] relative border-t-2 border-[#000080]/15">
+    <section 
+      id="problem" 
+      ref={sectionRef}
+      className={`py-20 bg-[#FFFFFF] relative border-t-2 border-[#000080]/15 transition-all duration-700 ${
+        isSectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+      }`}
+    >
       {/* Background ambient lighting */}
       <div className="absolute top-10 right-10 w-80 h-80 bg-[#FF9933]/15 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Subtle Ashoka Chakra-inspired background pattern */}
+      <div className="absolute inset-0 ashoka-chakra-pattern pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}

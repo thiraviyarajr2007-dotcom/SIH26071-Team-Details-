@@ -1,16 +1,28 @@
 import React from 'react';
 import { BarChart3, AlertCircle, CheckCircle, Gauge, ArrowUpRight, ShieldCheck } from 'lucide-react';
 import { BenchmarkItem } from '../types';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 interface BenchmarkSectionProps {
   benchmarks: BenchmarkItem[];
 }
 
 export const BenchmarkSection: React.FC<BenchmarkSectionProps> = ({ benchmarks }) => {
+  const [sectionRef, isSectionVisible] = useScrollAnimation({ threshold: 0.1 });
+
   return (
-    <section id="benchmarks" className="py-20 bg-[#FFFFFF] relative border-t-2 border-[#000080]/15">
+    <section 
+      id="benchmarks" 
+      ref={sectionRef}
+      className={`py-20 bg-[#FFFFFF] relative border-t-2 border-[#000080]/15 transition-all duration-700 ${
+        isSectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+      }`}
+    >
       {/* Ambient background glow */}
       <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-[#138808]/15 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Subtle Ashoka Chakra-inspired background pattern */}
+      <div className="absolute inset-0 ashoka-chakra-pattern pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -64,7 +76,7 @@ export const BenchmarkSection: React.FC<BenchmarkSectionProps> = ({ benchmarks }
             <div
               key={idx}
               id={`benchmark-card-${idx}`}
-              className="p-6 rounded-2xl bg-[#FFFFFF] border-2 border-[#000080] hover:border-[#FF9933] transition-all duration-200 shadow-md shadow-[#000080]/10 hover:shadow-xl flex flex-col justify-between"
+              className="p-6 rounded-2xl bg-[#FFFFFF] border-2 border-[#000080] hover:border-[#FF9933] premium-card-hover shadow-md shadow-[#000080]/10 flex flex-col justify-between"
             >
               {/* Metric Title & Icon */}
               <div>

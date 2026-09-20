@@ -113,7 +113,6 @@ export const Footer: React.FC<FooterProps> = ({ projectMetadata }) => {
                 Evaluation Dossier
               </h4>
               <div className="p-3.5 rounded-xl bg-[#FFFFFF] border-2 border-[#000080] font-mono text-xs space-y-1 shadow-sm">
-                <div className="text-[#000080] font-bold">SIH GRAND FINALE</div>
                 <div className="text-[#FF9933] font-extrabold">{projectMetadata.teamName}</div>
                 <div className="text-[11px] text-[#138808] font-extrabold">Ministry Technical Jury</div>
               </div>

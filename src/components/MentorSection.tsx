@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { Mentor } from '../types';
 import { ProjectImage } from './ProjectImage';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 interface MentorSectionProps {
   mentors: Mentor[];
@@ -19,7 +20,7 @@ interface MentorSectionProps {
 export const MentorSection: React.FC<MentorSectionProps> = ({ mentors }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const total = mentors.length;
-  const sectionRef = useRef<HTMLElement>(null);
+  const [sectionRef, isSectionVisible] = useScrollAnimation({ threshold: 0.1 });
 
   const handleNext = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % total);
@@ -55,11 +56,16 @@ export const MentorSection: React.FC<MentorSectionProps> = ({ mentors }) => {
     <section
       id="mentors"
       ref={sectionRef}
-      className="py-24 bg-[#FFFFFF] relative border-t-2 border-[#000080]/15 overflow-hidden"
+      className={`py-24 bg-[#FFFFFF] relative border-t-2 border-[#000080]/15 overflow-hidden transition-all duration-700 ${
+        isSectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+      }`}
     >
       {/* Background ambient lighting - Indian Flag glow */}
       <div className="absolute top-1/2 right-1/4 w-[750px] h-[400px] bg-[#FF9933]/15 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 left-1/4 w-[600px] h-[350px] bg-[#138808]/15 rounded-full blur-[140px] pointer-events-none" />
+
+      {/* Subtle Ashoka Chakra-inspired background pattern */}
+      <div className="absolute inset-0 ashoka-chakra-pattern pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -79,6 +85,45 @@ export const MentorSection: React.FC<MentorSectionProps> = ({ mentors }) => {
           <p className="text-sm font-mono font-medium text-[#000080] max-w-sm opacity-85">
             Distinguished academic and industrial leadership guiding technical feasibility and real-world deployment.
           </p>
+        </div>
+
+        {/* Visual Hierarchy Banner: TEAM → GUIDANCE → INNOVATION */}
+        <div className="mb-10 p-5 rounded-2xl bg-[#FFFFFF] border-2 border-[#000080] relative overflow-hidden">
+          {/* Top tricolor accent */}
+          <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#FF9933] via-[#FFFFFF] to-[#138808] border-b border-[#000080]" />
+          
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="text-center">
+                <div className="w-12 h-12 rounded-xl bg-[#FF9933] border-2 border-[#000080] flex items-center justify-center mb-1">
+                  <span className="text-xl font-extrabold text-[#FFFFFF]">T</span>
+                </div>
+                <span className="text-[10px] font-mono font-bold text-[#000080]">TEAM</span>
+              </div>
+              
+              <div className="flex-1 h-px bg-gradient-to-r from-[#FF9933] to-[#000080] hidden sm:block" />
+              
+              <div className="text-center">
+                <div className="w-12 h-12 rounded-xl bg-[#000080] border-2 border-[#FF9933] flex items-center justify-center mb-1">
+                  <span className="text-xl font-extrabold text-[#FF9933]">G</span>
+                </div>
+                <span className="text-[10px] font-mono font-bold text-[#000080]">GUIDANCE</span>
+              </div>
+              
+              <div className="flex-1 h-px bg-gradient-to-r from-[#000080] to-[#138808] hidden sm:block" />
+              
+              <div className="text-center">
+                <div className="w-12 h-12 rounded-xl bg-[#138808] border-2 border-[#000080] flex items-center justify-center mb-1">
+                  <span className="text-xl font-extrabold text-[#FFFFFF]">I</span>
+                </div>
+                <span className="text-[10px] font-mono font-bold text-[#000080]">INNOVATION</span>
+              </div>
+            </div>
+            
+            <div className="text-xs font-mono font-bold text-[#138808]">
+              HIERARCHY OF EXPERTISE
+            </div>
+          </div>
         </div>
 
         {/* Large Visual Mentor Carousel Card */}

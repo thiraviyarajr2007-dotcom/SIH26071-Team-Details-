@@ -1,6 +1,7 @@
 import React from 'react';
 import { Lightbulb, Cpu, Cog, Sparkles, TrendingUp, HeartHandshake, CheckCircle2 } from 'lucide-react';
 import { SolutionCard } from '../types';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 interface SolutionSectionProps {
   cards: SolutionCard[];
@@ -16,11 +17,22 @@ const iconsMap: Record<string, React.ReactNode> = {
 };
 
 export const SolutionSection: React.FC<SolutionSectionProps> = ({ cards }) => {
+  const [sectionRef, isSectionVisible] = useScrollAnimation({ threshold: 0.1 });
+
   return (
-    <section id="solution" className="py-20 bg-[#FFFFFF] relative border-t-2 border-[#000080]/15">
+    <section 
+      id="solution" 
+      ref={sectionRef}
+      className={`py-20 bg-[#FFFFFF] relative border-t-2 border-[#000080]/15 transition-all duration-700 ${
+        isSectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+      }`}
+    >
       {/* Ambient background glow - saffron and emerald */}
       <div className="absolute top-1/2 left-0 w-72 h-72 bg-[#FF9933]/15 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-1/2 right-0 w-72 h-72 bg-[#138808]/15 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Subtle Ashoka Chakra-inspired background pattern */}
+      <div className="absolute inset-0 ashoka-chakra-pattern pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -48,7 +60,7 @@ export const SolutionSection: React.FC<SolutionSectionProps> = ({ cards }) => {
             <div
               key={card.step}
               id={`solution-card-${card.step}`}
-              className="group relative rounded-2xl bg-[#FFFFFF] border-2 border-[#000080] hover:border-[#FF9933] p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 shadow-md shadow-[#000080]/10 hover:shadow-xl flex flex-col justify-between overflow-hidden"
+              className="group relative rounded-2xl bg-[#FFFFFF] border-2 border-[#000080] hover:border-[#FF9933] p-6 sm:p-7 premium-card-hover shadow-md shadow-[#000080]/10 flex flex-col justify-between overflow-hidden"
             >
               {/* Subtle top indicator hover line */}
               <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-[#FF9933] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

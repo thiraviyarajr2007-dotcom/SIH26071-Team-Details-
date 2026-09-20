@@ -11,6 +11,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { ProjectImpactCard } from '../types';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 interface ProjectImpactSectionProps {
   impactCards: ProjectImpactCard[];
@@ -24,11 +25,22 @@ const impactIconMap: Record<string, React.ReactNode> = {
 };
 
 export const ProjectImpactSection: React.FC<ProjectImpactSectionProps> = ({ impactCards }) => {
+  const [sectionRef, isSectionVisible] = useScrollAnimation({ threshold: 0.1 });
+
   return (
-    <section id="impact" className="py-20 bg-[#FFFFFF] relative border-t-2 border-[#000080]/15">
+    <section 
+      id="impact" 
+      ref={sectionRef}
+      className={`py-20 bg-[#FFFFFF] relative border-t-2 border-[#000080]/15 transition-all duration-700 ${
+        isSectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+      }`}
+    >
       {/* Background ambient lighting */}
       <div className="absolute top-1/3 left-10 w-96 h-96 bg-[#FF9933]/15 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#138808]/15 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Subtle Ashoka Chakra-inspired background pattern */}
+      <div className="absolute inset-0 ashoka-chakra-pattern pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -87,7 +99,7 @@ export const ProjectImpactSection: React.FC<ProjectImpactSectionProps> = ({ impa
             <div
               key={card.id || idx}
               id={`impact-card-${card.id}`}
-              className="p-6 sm:p-7 rounded-2xl bg-[#FFFFFF] border-2 border-[#000080] hover:border-[#FF9933] shadow-md shadow-[#000080]/10 transition-all duration-300 hover:-translate-y-1 group flex flex-col justify-between"
+              className="p-6 sm:p-7 rounded-2xl bg-[#FFFFFF] border-2 border-[#000080] hover:border-[#FF9933] shadow-md shadow-[#000080]/10 premium-card-hover group flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">

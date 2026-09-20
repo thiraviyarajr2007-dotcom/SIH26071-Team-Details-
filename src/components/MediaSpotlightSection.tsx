@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { MediaSpotlightItem } from '../types';
 import { ProjectImage } from './ProjectImage';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 interface MediaSpotlightSectionProps {
   items: MediaSpotlightItem[];
@@ -24,7 +25,7 @@ export const MediaSpotlightSection: React.FC<MediaSpotlightSectionProps> = ({ it
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [activeModalItem, setActiveModalItem] = useState<MediaSpotlightItem | null>(null);
   const total = items.length;
-  const sectionRef = useRef<HTMLElement>(null);
+  const [sectionRef, isSectionVisible] = useScrollAnimation({ threshold: 0.1 });
 
   const handleNext = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % total);
@@ -100,11 +101,16 @@ export const MediaSpotlightSection: React.FC<MediaSpotlightSectionProps> = ({ it
       ref={sectionRef}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      className="py-24 bg-[#FFFFFF] relative border-t-2 border-[#000080]/15 overflow-hidden"
+      className={`py-24 bg-[#FFFFFF] relative border-t-2 border-[#000080]/15 overflow-hidden transition-all duration-700 ${
+        isSectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+      }`}
     >
       {/* Background ambient lighting - Indian Flag glow */}
       <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-[#FF9933]/15 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute top-1/2 right-1/3 translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-[#138808]/15 rounded-full blur-[150px] pointer-events-none" />
+
+      {/* Subtle Ashoka Chakra-inspired background pattern */}
+      <div className="absolute inset-0 ashoka-chakra-pattern pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}

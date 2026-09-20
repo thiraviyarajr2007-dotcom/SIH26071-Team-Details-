@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowDown, ExternalLink, Shield, Cpu, Zap, Activity } from 'lucide-react';
 import { ProjectMetadata } from '../types';
 
@@ -13,6 +13,24 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   onExploreSolution,
   onViewProject,
 }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [chakraRotation, setChakraRotation] = useState(0);
+
+  useEffect(() => {
+    // Trigger entrance animations after component mount
+    const timer = setTimeout(() => setIsLoaded(true), 100);
+    
+    // Subtle Ashoka Chakra rotation animation
+    const rotationInterval = setInterval(() => {
+      setChakraRotation(prev => (prev + 0.5) % 360);
+    }, 50);
+
+    return () => {
+      clearTimeout(timer);
+      clearInterval(rotationInterval);
+    };
+  }, []);
+
   return (
     <section
       id="home"
@@ -21,10 +39,48 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       {/* Subtle Animated Background Grid */}
       <div className="absolute inset-0 bg-[radial-gradient(#000080_1px,transparent_1px)] [background-size:32px_32px] opacity-10" />
       
+      {/* Ashoka Chakra-inspired Background Geometry */}
+      <div 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-5 pointer-events-none"
+        style={{
+          transform: `translate(-50%, -50%) rotate(${chakraRotation}deg)`,
+          transition: 'transform 0.1s linear'
+        }}
+      >
+        {/* 24-spoke inspired circular pattern */}
+        <svg viewBox="0 0 100 100" className="w-full h-full">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="#000080" strokeWidth="0.5" />
+          {[...Array(24)].map((_, i) => (
+            <line
+              key={i}
+              x1="50"
+              y1="5"
+              x2="50"
+              y2="20"
+              stroke="#000080"
+              strokeWidth="0.5"
+              transform={`rotate(${i * 15} 50 50)`}
+            />
+          ))}
+        </svg>
+      </div>
+
       {/* Tricolor Ambient Aura: Saffron Top-Left, Ashoka Navy Center, India Green Bottom-Right */}
-      <div className="absolute top-12 left-1/4 w-[450px] sm:w-[600px] h-[350px] bg-[#FF9933]/15 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#000080]/10 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-10 right-1/4 w-[450px] sm:w-[600px] h-[350px] bg-[#138808]/15 rounded-full blur-[140px] pointer-events-none" />
+      <div 
+        className={`absolute top-12 left-1/4 w-[450px] sm:w-[600px] h-[350px] bg-[#FF9933]/15 rounded-full blur-[140px] pointer-events-none transition-all duration-1000 ${
+          isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
+        }`}
+      />
+      <div 
+        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#000080]/10 rounded-full blur-[160px] pointer-events-none transition-all duration-1000 delay-200 ${
+          isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+        }`}
+      />
+      <div 
+        className={`absolute bottom-10 right-1/4 w-[450px] sm:w-[600px] h-[350px] bg-[#138808]/15 rounded-full blur-[140px] pointer-events-none transition-all duration-1000 delay-300 ${
+          isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'
+        }`}
+      />
 
       {/* Decorative Subtle Tiranga Gradient Border Lines */}
       <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-[#FF9933] via-[#FFFFFF] to-[#138808]" />
@@ -32,7 +88,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         {/* National Flag Accent Pill */}
-        <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#FFFFFF] border-2 border-[#000080] shadow-sm mb-7">
+        <div 
+          className={`inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#FFFFFF] border-2 border-[#000080] shadow-sm mb-7 transition-all duration-700 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+          }`}
+        >
           <div className="flex gap-1 items-center">
             <span className="w-2.5 h-2.5 rounded-full bg-[#FF9933]" />
             <span className="w-2.5 h-2.5 rounded-full bg-[#FFFFFF] border border-[#000080]" />
@@ -48,7 +108,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         {/* Project Name Heading */}
         <h1
           id="hero-project-title"
-          className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-[#000080] mb-6 leading-[1.1]"
+          className={`text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-[#000080] mb-6 leading-[1.1] transition-all duration-700 delay-100 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
         >
           <span className="block">{projectMetadata.projectName}</span>
         </h1>
@@ -56,17 +118,23 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         {/* One-Line Project Description */}
         <p
           id="hero-project-tagline"
-          className="text-lg sm:text-xl md:text-2xl text-[#000080] max-w-3xl mx-auto font-medium leading-relaxed mb-10 text-balance opacity-90"
+          className={`text-lg sm:text-xl md:text-2xl text-[#000080] max-w-3xl mx-auto font-medium leading-relaxed mb-10 text-balance opacity-90 transition-all duration-700 delay-200 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
         >
           {projectMetadata.tagline}
         </p>
 
         {/* CTAs: Explore Solution & View Project */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-14">
+        <div 
+          className={`flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-14 transition-all duration-700 delay-300 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <button
             id="hero-btn-explore"
             onClick={onExploreSolution}
-            className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#FF9933] hover:bg-[#FF9933]/90 text-[#FFFFFF] font-extrabold text-base tracking-wide flex items-center justify-center gap-2 border-2 border-[#000080] shadow-md shadow-[#000080]/15 transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#FF9933] hover:bg-[#FF9933]/90 text-[#FFFFFF] font-extrabold text-base tracking-wide flex items-center justify-center gap-2 border-2 border-[#000080] shadow-md shadow-[#000080]/15 premium-button-hover cursor-pointer focus-ring"
           >
             <span>Explore Team &amp; Solution</span>
             <ArrowDown className="w-4 h-4 text-[#FFFFFF] stroke-[2.5]" />
@@ -75,7 +143,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <button
             id="hero-btn-view-project"
             onClick={onViewProject}
-            className="group w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#FFFFFF] hover:bg-[#138808] text-[#000080] hover:text-[#FFFFFF] font-extrabold text-base tracking-wide flex items-center justify-center gap-2 border-2 border-[#000080] shadow-sm transition-all duration-200 cursor-pointer"
+            className="group w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#FFFFFF] hover:bg-[#138808] text-[#000080] hover:text-[#FFFFFF] font-extrabold text-base tracking-wide flex items-center justify-center gap-2 border-2 border-[#000080] shadow-sm premium-button-hover cursor-pointer focus-ring"
           >
             <span>View Project Dossier</span>
             <ExternalLink className="w-4 h-4 text-[#000080] group-hover:text-[#FFFFFF]" />
@@ -85,11 +153,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         {/* SIH Pillars: Saffron, Navy Blue, White, Green */}
         <div
           id="hero-pillars"
-          className="w-full max-w-4xl pt-8 border-t-2 border-[#000080]/15 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-left"
+          className={`w-full max-w-4xl pt-8 border-t-2 border-[#000080]/15 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-left transition-all duration-700 delay-400 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
         >
           {/* Pillar 1: Saffron */}
-          <div className="p-3.5 rounded-xl bg-[#FFFFFF] border-2 border-[#FF9933] shadow-sm flex items-center gap-3 hover:shadow-md transition-shadow">
-            <div className="w-9 h-9 rounded-lg bg-[#FF9933] border border-[#000080] flex items-center justify-center shrink-0">
+          <div className="p-3.5 rounded-xl bg-[#FFFFFF] border-2 border-[#FF9933] shadow-sm flex items-center gap-3 hover:shadow-md transition-shadow group">
+            <div className="w-9 h-9 rounded-lg bg-[#FF9933] border border-[#000080] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
               <Shield className="w-4 h-4 text-[#FFFFFF]" />
             </div>
             <div>
@@ -99,8 +169,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
 
           {/* Pillar 2: Navy */}
-          <div className="p-3.5 rounded-xl bg-[#FFFFFF] border-2 border-[#000080] shadow-sm flex items-center gap-3 hover:shadow-md transition-shadow">
-            <div className="w-9 h-9 rounded-lg bg-[#000080] border border-[#000080] flex items-center justify-center shrink-0">
+          <div className="p-3.5 rounded-xl bg-[#FFFFFF] border-2 border-[#000080] shadow-sm flex items-center gap-3 hover:shadow-md transition-shadow group">
+            <div className="w-9 h-9 rounded-lg bg-[#000080] border border-[#000080] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
               <Cpu className="w-4 h-4 text-[#FFFFFF]" />
             </div>
             <div>
@@ -110,8 +180,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
 
           {/* Pillar 3: White / Chakra */}
-          <div className="p-3.5 rounded-xl bg-[#FFFFFF] border-2 border-[#000080] shadow-sm flex items-center gap-3 hover:shadow-md transition-shadow">
-            <div className="w-9 h-9 rounded-lg bg-[#FFFFFF] border-2 border-[#000080] flex items-center justify-center shrink-0">
+          <div className="p-3.5 rounded-xl bg-[#FFFFFF] border-2 border-[#000080] shadow-sm flex items-center gap-3 hover:shadow-md transition-shadow group">
+            <div className="w-9 h-9 rounded-lg bg-[#FFFFFF] border-2 border-[#000080] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
               <Activity className="w-4 h-4 text-[#000080]" />
             </div>
             <div>
@@ -121,8 +191,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
 
           {/* Pillar 4: India Green */}
-          <div className="p-3.5 rounded-xl bg-[#FFFFFF] border-2 border-[#138808] shadow-sm flex items-center gap-3 hover:shadow-md transition-shadow">
-            <div className="w-9 h-9 rounded-lg bg-[#138808] border border-[#000080] flex items-center justify-center shrink-0">
+          <div className="p-3.5 rounded-xl bg-[#FFFFFF] border-2 border-[#138808] shadow-sm flex items-center gap-3 hover:shadow-md transition-shadow group">
+            <div className="w-9 h-9 rounded-lg bg-[#138808] border border-[#000080] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
               <Zap className="w-4 h-4 text-[#FFFFFF]" />
             </div>
             <div>
@@ -133,7 +203,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
 
         {/* Subtitle Scroll Hint with India Flag Accent */}
-        <div className="mt-12 flex items-center gap-2.5 text-xs font-mono font-bold text-[#000080]">
+        <div 
+          className={`mt-12 flex items-center gap-2.5 text-xs font-mono font-bold text-[#000080] transition-all duration-700 delay-500 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <span className="flex gap-1 items-center">
             <span className="w-2 h-2 rounded-full bg-[#FF9933]" />
             <span className="w-2 h-2 rounded-full bg-[#FFFFFF] border border-[#000080]" />

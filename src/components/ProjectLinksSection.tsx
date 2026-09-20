@@ -11,6 +11,7 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import { ProjectResourceLink } from '../types';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 interface ProjectLinksSectionProps {
   resources: ProjectResourceLink[];
@@ -26,10 +27,21 @@ const resourceIconMap: Record<string, React.ElementType> = {
 };
 
 export const ProjectLinksSection: React.FC<ProjectLinksSectionProps> = ({ resources }) => {
+  const [sectionRef, isSectionVisible] = useScrollAnimation({ threshold: 0.1 });
+
   return (
-    <section id="links" className="py-20 bg-[#FFFFFF] relative border-t-2 border-[#000080]/15">
+    <section 
+      id="links" 
+      ref={sectionRef}
+      className={`py-20 bg-[#FFFFFF] relative border-t-2 border-[#000080]/15 transition-all duration-700 ${
+        isSectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+      }`}
+    >
       {/* Background ambient lighting */}
       <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-[#FF9933]/15 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Subtle Ashoka Chakra-inspired background pattern */}
+      <div className="absolute inset-0 ashoka-chakra-pattern pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -64,7 +76,7 @@ export const ProjectLinksSection: React.FC<ProjectLinksSectionProps> = ({ resour
               <div
                 key={res.type}
                 id={`resource-card-${res.type.toLowerCase()}`}
-                className="group p-6 rounded-2xl bg-[#FFFFFF] border-2 border-[#000080] hover:border-[#FF9933] transition-all duration-200 shadow-md shadow-[#000080]/10 hover:shadow-xl flex flex-col justify-between"
+                className="group p-6 rounded-2xl bg-[#FFFFFF] border-2 border-[#000080] hover:border-[#FF9933] premium-card-hover shadow-md shadow-[#000080]/10 flex flex-col justify-between"
               >
                 <div>
                   {/* Top Bar: Icon + Badge */}
