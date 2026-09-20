@@ -138,6 +138,137 @@
   box-shadow: 0 25px 50px -12px rgba(0, 0, 128, 0.28);
 }
 
+/* Premium Glassmorphism Effects */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 128, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 128, 0.08);
+}
+
+.glass-card-navy {
+  background: rgba(0, 0, 128, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 128, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 128, 0.12);
+}
+
+.glass-card-saffron {
+  background: rgba(255, 153, 51, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 153, 51, 0.2);
+  box-shadow: 0 8px 32px rgba(255, 153, 51, 0.15);
+}
+
+.glass-card-green {
+  background: rgba(19, 136, 8, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(19, 136, 8, 0.2);
+  box-shadow: 0 8px 32px rgba(19, 136, 8, 0.15);
+}
+
+/* Premium Shadows */
+.premium-shadow-sm {
+  box-shadow: 0 2px 8px rgba(0, 0, 128, 0.06), 0 1px 4px rgba(0, 0, 128, 0.04);
+}
+
+.premium-shadow-md {
+  box-shadow: 0 4px 16px rgba(0, 0, 128, 0.08), 0 2px 8px rgba(0, 0, 128, 0.06);
+}
+
+.premium-shadow-lg {
+  box-shadow: 0 8px 24px rgba(0, 0, 128, 0.1), 0 4px 12px rgba(0, 0, 128, 0.08);
+}
+
+.premium-shadow-xl {
+  box-shadow: 0 16px 48px rgba(0, 0, 128, 0.12), 0 8px 24px rgba(0, 0, 128, 0.1);
+}
+
+/* Premium Gradient Text */
+.gradient-text-navy {
+  background: linear-gradient(135deg, #000080 0%, #1a1aff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-saffron {
+  background: linear-gradient(135deg, #FF9933 0%, #ffb366 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-green {
+  background: linear-gradient(135deg, #138808 0%, #1aa810 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Premium Button Styles */
+.premium-button-navy {
+  background: linear-gradient(135deg, #000080 0%, #1a1aff 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 128, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 128, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-button-navy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 128, 0.3);
+  background: linear-gradient(135deg, #1a1aff 0%, #000080 100%);
+}
+
+.premium-button-saffron {
+  background: linear-gradient(135deg, #FF9933 0%, #ffb366 100%);
+  color: #000080;
+  border: 1px solid rgba(255, 153, 51, 0.3);
+  box-shadow: 0 4px 16px rgba(255, 153, 51, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-button-saffron:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 153, 51, 0.3);
+  background: linear-gradient(135deg, #ffb366 0%, #FF9933 100%);
+}
+
+.premium-button-green {
+  background: linear-gradient(135deg, #138808 0%, #1aa810 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(19, 136, 8, 0.3);
+  box-shadow: 0 4px 16px rgba(19, 136, 8, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-button-green:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(19, 136, 8, 0.3);
+  background: linear-gradient(135deg, #1aa810 0%, #138808 100%);
+}
+
+/* Premium Card Border */
+.premium-border-navy {
+  border: 1px solid rgba(0, 0, 128, 0.15);
+  border-radius: 16px;
+}
+
+.premium-border-saffron {
+  border: 1px solid rgba(255, 153, 51, 0.25);
+  border-radius: 16px;
+}
+
+.premium-border-green {
+  border: 1px solid rgba(19, 136, 8, 0.25);
+  border-radius: 16px;
+}
+
 /* Sunburst pattern background */
 .ashoka-chakra-pattern {
   background-image: url('/images/patterns/sunburst-pattern.jpg');

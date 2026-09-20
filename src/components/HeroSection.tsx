@@ -59,36 +59,36 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         {/* National Flag Accent Pill */}
         <div 
-          className={`inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#FFFFFF] border-2 border-[#000080] shadow-sm mb-7 transition-all duration-700 ${
+          className={`inline-flex items-center gap-3 px-5 py-2.5 rounded-full glass-card-navy mb-8 transition-all duration-700 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
           }`}
         >
-          <div className="flex gap-1 items-center">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#FF9933]" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#FFFFFF] border border-[#000080]" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#138808]" />
+          <div className="flex gap-1.5 items-center">
+            <span className="w-3 h-3 rounded-full bg-[#FF9933] shadow-sm" />
+            <span className="w-3 h-3 rounded-full bg-[#FFFFFF] border-2 border-[#000080]" />
+            <span className="w-3 h-3 rounded-full bg-[#138808] shadow-sm" />
           </div>
           <span className="font-mono text-xs uppercase tracking-widest text-[#000080] font-extrabold">
             SMART INDIA HACKATHON 2026
           </span>
-          <span className="text-[#000080]">|</span>
+          <span className="text-[#000080] opacity-50">|</span>
           <span className="font-mono text-xs text-[#138808] font-extrabold">TIRANGA EDITION</span>
         </div>
 
         {/* Project Name Heading */}
         <h1
           id="hero-project-title"
-          className={`text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-[#000080] mb-6 leading-[1.1] transition-all duration-700 delay-100 ${
+          className={`text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight text-[#000080] mb-8 leading-[1.05] transition-all duration-700 delay-100 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <span className="block">{projectMetadata.projectName}</span>
+          <span className="block gradient-text-navy">{projectMetadata.projectName}</span>
         </h1>
 
         {/* One-Line Project Description */}
         <p
           id="hero-project-tagline"
-          className={`text-lg sm:text-xl md:text-2xl text-[#000080] max-w-3xl mx-auto font-medium leading-relaxed mb-10 text-balance opacity-90 transition-all duration-700 delay-200 ${
+          className={`text-xl sm:text-2xl md:text-3xl text-[#000080] max-w-4xl mx-auto font-medium leading-relaxed mb-12 text-balance opacity-85 transition-all duration-700 delay-200 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
@@ -97,40 +97,40 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
         {/* CTAs: Explore Solution & View Project */}
         <div 
-          className={`flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-14 transition-all duration-700 delay-300 ${
+          className={`flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-16 transition-all duration-700 delay-300 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
           <button
             id="hero-btn-explore"
             onClick={onExploreSolution}
-            className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#FF9933] hover:bg-[#FF9933]/90 text-[#FFFFFF] font-extrabold text-base tracking-wide flex items-center justify-center gap-2 border-2 border-[#000080] shadow-md shadow-[#000080]/15 premium-button-hover cursor-pointer focus-ring"
+            className="w-full sm:w-auto px-10 py-4 rounded-xl premium-button-saffron font-extrabold text-lg tracking-wide flex items-center justify-center gap-3 cursor-pointer focus-ring"
           >
             <span>Explore Team &amp; Solution</span>
-            <ArrowDown className="w-4 h-4 text-[#FFFFFF] stroke-[2.5]" />
+            <ArrowDown className="w-5 h-5 stroke-[2.5]" />
           </button>
 
           <button
             id="hero-btn-view-project"
             onClick={onViewProject}
-            className="group w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#FFFFFF] hover:bg-[#138808] text-[#000080] hover:text-[#FFFFFF] font-extrabold text-base tracking-wide flex items-center justify-center gap-2 border-2 border-[#000080] shadow-sm premium-button-hover cursor-pointer focus-ring"
+            className="group w-full sm:w-auto px-10 py-4 rounded-xl glass-card-navy hover:glass-card-saffron text-[#000080] font-extrabold text-lg tracking-wide flex items-center justify-center gap-3 cursor-pointer focus-ring transition-all duration-300"
           >
             <span>View Project Dossier</span>
-            <ExternalLink className="w-4 h-4 text-[#000080] group-hover:text-[#FFFFFF]" />
+            <ExternalLink className="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </button>
         </div>
 
         {/* SIH Pillars: Saffron, Navy Blue, White, Green */}
         <div
           id="hero-pillars"
-          className={`w-full max-w-4xl pt-8 border-t-2 border-[#000080]/15 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-left transition-all duration-700 delay-400 ${
+          className={`w-full max-w-5xl pt-10 border-t-2 border-[#000080]/10 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 text-left transition-all duration-700 delay-400 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
           {/* Pillar 1: Saffron */}
-          <div className="p-3.5 rounded-xl bg-[#FFFFFF] border-2 border-[#FF9933] shadow-sm flex items-center gap-3 hover:shadow-md transition-shadow group">
-            <div className="w-9 h-9 rounded-lg bg-[#FF9933] border border-[#000080] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-              <Shield className="w-4 h-4 text-[#FFFFFF]" />
+          <div className="p-4 rounded-xl glass-card-saffron flex items-center gap-4 hover:scale-105 transition-all duration-300 cursor-pointer group">
+            <div className="w-10 h-10 rounded-xl bg-[#FF9933] border-2 border-[#000080] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform shadow-lg">
+              <Shield className="w-5 h-5 text-[#FFFFFF]" />
             </div>
             <div>
               <div className="text-[11px] font-mono text-[#FF9933] uppercase tracking-wider font-extrabold">National Pride</div>
@@ -139,9 +139,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
 
           {/* Pillar 2: Navy */}
-          <div className="p-3.5 rounded-xl bg-[#FFFFFF] border-2 border-[#000080] shadow-sm flex items-center gap-3 hover:shadow-md transition-shadow group">
-            <div className="w-9 h-9 rounded-lg bg-[#000080] border border-[#000080] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-              <Cpu className="w-4 h-4 text-[#FFFFFF]" />
+          <div className="p-4 rounded-xl glass-card-navy flex items-center gap-4 hover:scale-105 transition-all duration-300 cursor-pointer group">
+            <div className="w-10 h-10 rounded-xl bg-[#000080] border-2 border-[#000080] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform shadow-lg">
+              <Cpu className="w-5 h-5 text-[#FFFFFF]" />
             </div>
             <div>
               <div className="text-[11px] font-mono text-[#000080] uppercase tracking-wider font-extrabold">Technology</div>
@@ -150,9 +150,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
 
           {/* Pillar 3: White / Chakra */}
-          <div className="p-3.5 rounded-xl bg-[#FFFFFF] border-2 border-[#000080] shadow-sm flex items-center gap-3 hover:shadow-md transition-shadow group">
-            <div className="w-9 h-9 rounded-lg bg-[#FFFFFF] border-2 border-[#000080] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-              <Activity className="w-4 h-4 text-[#000080]" />
+          <div className="p-4 rounded-xl glass-card flex items-center gap-4 hover:scale-105 transition-all duration-300 cursor-pointer group">
+            <div className="w-10 h-10 rounded-xl bg-[#FFFFFF] border-2 border-[#000080] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform shadow-lg">
+              <Activity className="w-5 h-5 text-[#000080]" />
             </div>
             <div>
               <div className="text-[11px] font-mono text-[#000080] uppercase tracking-wider font-extrabold">Validation</div>
@@ -161,9 +161,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
 
           {/* Pillar 4: India Green */}
-          <div className="p-3.5 rounded-xl bg-[#FFFFFF] border-2 border-[#138808] shadow-sm flex items-center gap-3 hover:shadow-md transition-shadow group">
-            <div className="w-9 h-9 rounded-lg bg-[#138808] border border-[#000080] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-              <Zap className="w-4 h-4 text-[#FFFFFF]" />
+          <div className="p-4 rounded-xl glass-card-green flex items-center gap-4 hover:scale-105 transition-all duration-300 cursor-pointer group">
+            <div className="w-10 h-10 rounded-xl bg-[#138808] border-2 border-[#000080] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform shadow-lg">
+              <Zap className="w-5 h-5 text-[#FFFFFF]" />
             </div>
             <div>
               <div className="text-[11px] font-mono text-[#138808] uppercase tracking-wider font-extrabold">Growth &amp; Scale</div>
