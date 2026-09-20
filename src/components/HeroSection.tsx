@@ -39,31 +39,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       {/* Subtle Animated Background Grid */}
       <div className="absolute inset-0 bg-[radial-gradient(#000080_1px,transparent_1px)] [background-size:32px_32px] opacity-10" />
       
-      {/* Ashoka Chakra-inspired Background Geometry */}
+      {/* Enhanced Ashoka Chakra Gradient Background */}
+      <div className="absolute inset-0 ashoka-chakra-gradient pointer-events-none opacity-15" />
+      
+      {/* Enhanced Ashoka Chakra-inspired Background Geometry */}
       <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-5 pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] ashoka-chakra-pattern-lg pointer-events-none"
         style={{
           transform: `translate(-50%, -50%) rotate(${chakraRotation}deg)`,
           transition: 'transform 0.1s linear'
         }}
-      >
-        {/* 24-spoke inspired circular pattern */}
-        <svg viewBox="0 0 100 100" className="w-full h-full">
-          <circle cx="50" cy="50" r="45" fill="none" stroke="#000080" strokeWidth="0.5" />
-          {[...Array(24)].map((_, i) => (
-            <line
-              key={i}
-              x1="50"
-              y1="5"
-              x2="50"
-              y2="20"
-              stroke="#000080"
-              strokeWidth="0.5"
-              transform={`rotate(${i * 15} 50 50)`}
-            />
-          ))}
-        </svg>
-      </div>
+      />
 
       {/* Tricolor Ambient Aura: Saffron Top-Left, Ashoka Navy Center, India Green Bottom-Right */}
       <div 

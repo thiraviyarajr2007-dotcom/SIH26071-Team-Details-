@@ -65,7 +65,7 @@ export const MentorSection: React.FC<MentorSectionProps> = ({ mentors }) => {
       <div className="absolute bottom-10 left-1/4 w-[600px] h-[350px] bg-[#138808]/15 rounded-full blur-[140px] pointer-events-none" />
 
       {/* Subtle Ashoka Chakra-inspired background pattern */}
-      <div className="absolute inset-0 ashoka-chakra-pattern pointer-events-none" />
+      <div className="absolute inset-0 ashoka-chakra-pattern-lg pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
