@@ -455,9 +455,9 @@ export const mentorsList: Mentor[] = [
   {
     id: "gajendran",
     name: "Er. Gajendran Parthasarathi",
-    roleType: "Mentor",
+    roleType: "Institution Mentor",
     designation: "Senior Academic Mentor",
-    institution: "Rathinam Group of Institutions",
+    institution: "Institution Mentor",
     description: "Strategic guidance on research methodology, predictive model validation, scholarly peer review, and stakeholder impact analysis for disaster management authorities.",
     linkedin: "https://www.linkedin.com/in/er-gajendran-parthasarathi-9689a2109/",
     image: "/images/mentors/gajendran.png",
@@ -466,9 +466,9 @@ export const mentorsList: Mentor[] = [
   {
     id: "muthusamy",
     name: "Prof. Muthusamy K",
-    roleType: "Mentor",
+    roleType: "Institution Mentor",
     designation: "Faculty Mentor",
-    institution: "Rathinam Group of Institutions",
+    institution: "Institution Mentor",
     description: "Academic advisory on core system architecture, algorithmic optimization, high-throughput geospatial query indexing, and robust full-stack software integration.",
     linkedin: "https://www.linkedin.com/in/muthusamy-k-",
     image: "/images/mentors/muthusamy.png",

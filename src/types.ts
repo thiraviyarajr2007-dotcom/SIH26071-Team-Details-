@@ -84,7 +84,7 @@ export interface TeamMember {
 export interface Mentor {
   id: string;
   name: string;
-  roleType: 'Mentor' | 'Industrial Mentor';
+  roleType: 'Institution Mentor' | 'Industrial Mentor' | 'Mentor';
   designation: string;
   institution: string;
   description: string;
