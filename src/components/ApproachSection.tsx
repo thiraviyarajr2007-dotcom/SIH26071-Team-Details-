@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Search,
   FileText,
@@ -41,8 +41,19 @@ const iconComponentMap: Record<string, React.ElementType> = {
 
 export const ApproachSection: React.FC<ApproachSectionProps> = ({ workflow }) => {
   const [selectedStepIndex, setSelectedStepIndex] = useState<number>(0);
+  const [isPaused, setIsPaused] = useState<boolean>(false);
   const [sectionRef, isSectionVisible] = useScrollAnimation({ threshold: 0.1 });
   const totalSteps = workflow.length;
+
+  // Auto-play through stages transition every 1.5 seconds
+  useEffect(() => {
+    if (isPaused || totalSteps <= 1) return;
+    const interval = setInterval(() => {
+      setSelectedStepIndex((prev) => (prev + 1) % totalSteps);
+    }, 1500);
+
+    return () => clearInterval(interval);
+  }, [isPaused, selectedStepIndex, totalSteps]);
 
   const activeStep = workflow[selectedStepIndex] || workflow[0];
   const IconComponent = iconComponentMap[activeStep.iconName] || Zap;
@@ -92,6 +103,8 @@ export const ApproachSection: React.FC<ApproachSectionProps> = ({ workflow }) =>
         {/* Highlight Focus Inspection Box for Selected Step */}
         <div
           id="approach-active-inspector"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
           className="mb-12 p-6 sm:p-8 rounded-2xl bg-[#FFFFFF] border-2 border-[#000080] shadow-xl shadow-[#000080]/10 relative overflow-hidden transition-all duration-500"
         >
 

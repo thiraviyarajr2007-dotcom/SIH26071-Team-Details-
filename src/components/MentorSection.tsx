@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   ChevronLeft,
   ChevronRight,
@@ -18,6 +18,7 @@ interface MentorSectionProps {
 
 export const MentorSection: React.FC<MentorSectionProps> = ({ mentors }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const [slideDirection, setSlideDirection] = useState<'right' | 'left'>('right');
   const total = mentors.length;
   const [sectionRef, isSectionVisible] = useScrollAnimation({ threshold: 0.1 });
@@ -36,6 +37,17 @@ export const MentorSection: React.FC<MentorSectionProps> = ({ mentors }) => {
     setSlideDirection(idx > currentIndex ? 'right' : 'left');
     setCurrentIndex(idx);
   };
+
+  // Automatic mentor rotation transition every 3 seconds
+  useEffect(() => {
+    if (isPaused || total <= 1) return;
+    const interval = setInterval(() => {
+      setSlideDirection('right');
+      setCurrentIndex((prev) => (prev + 1) % total);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [isPaused, currentIndex, total]);
 
   // Touch swipe support
   const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -142,6 +154,8 @@ export const MentorSection: React.FC<MentorSectionProps> = ({ mentors }) => {
           {/* Main Card */}
           <div
             id="mentor-spotlight-card"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
             className="rounded-3xl bg-[#FFFFFF] border-2 border-[#000080] p-6 sm:p-10 lg:p-12 shadow-xl shadow-[#000080]/10 relative overflow-hidden"
           >
 
