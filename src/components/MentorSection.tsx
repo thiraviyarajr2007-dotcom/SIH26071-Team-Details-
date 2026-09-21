@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   ChevronLeft,
   ChevronRight,
@@ -7,8 +7,6 @@ import {
   Building2,
   ExternalLink,
   GraduationCap,
-  Play,
-  Pause,
 } from 'lucide-react';
 import { Mentor } from '../types';
 import { ProjectImage } from './ProjectImage';
@@ -20,7 +18,6 @@ interface MentorSectionProps {
 
 export const MentorSection: React.FC<MentorSectionProps> = ({ mentors }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
   const [slideDirection, setSlideDirection] = useState<'right' | 'left'>('right');
   const total = mentors.length;
   const [sectionRef, isSectionVisible] = useScrollAnimation({ threshold: 0.1 });
@@ -39,17 +36,6 @@ export const MentorSection: React.FC<MentorSectionProps> = ({ mentors }) => {
     setSlideDirection(idx > currentIndex ? 'right' : 'left');
     setCurrentIndex(idx);
   };
-
-  // Automatic mentor rotation every 3 seconds - smoothly resets whenever slide changes
-  useEffect(() => {
-    if (isPaused || total <= 1) return;
-    const interval = setInterval(() => {
-      setSlideDirection('right');
-      setCurrentIndex((prev) => (prev + 1) % total);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [isPaused, currentIndex, total]);
 
   // Touch swipe support
   const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -158,18 +144,6 @@ export const MentorSection: React.FC<MentorSectionProps> = ({ mentors }) => {
             id="mentor-spotlight-card"
             className="rounded-3xl bg-[#FFFFFF] border-2 border-[#000080] p-6 sm:p-10 lg:p-12 shadow-xl shadow-[#000080]/10 relative overflow-hidden"
           >
-            {/* Top tricolor stripe */}
-            <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#FF9933] via-[#FFFFFF] to-[#138808] border-b border-[#000080]" />
-
-            {/* 3-second auto-transition progress bar */}
-            <div className="absolute top-1.5 inset-x-0 h-1.5 bg-[#000080]/10 overflow-hidden">
-              <div
-                key={`mentor-progress-${currentIndex}-${isPaused}`}
-                className={`h-full bg-gradient-to-r from-[#FF9933] via-[#000080] to-[#138808] ${
-                  isPaused ? 'w-0' : 'animate-progress-3s'
-                }`}
-              />
-            </div>
 
             <div
               key={`mentor-card-content-${currentIndex}`}
@@ -205,17 +179,6 @@ export const MentorSection: React.FC<MentorSectionProps> = ({ mentors }) => {
                     <span className="text-xs font-mono text-[#138808] font-extrabold">
                       HONORARY ADVISOR // SIH
                     </span>
-
-                    {/* Auto-cycle indicator with interactive toggle */}
-                    <button
-                      type="button"
-                      onClick={() => setIsPaused((prev) => !prev)}
-                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-mono font-bold bg-[#FFFFFF] hover:bg-[#FF9933]/15 text-[#000080] border border-[#000080]/30 shadow-xs ml-auto cursor-pointer transition-colors"
-                      title={isPaused ? "Click to start auto-cycle" : "Click to pause"}
-                    >
-                      {isPaused ? <Play className="w-3 h-3 text-[#138808]" /> : <Pause className="w-3 h-3 text-[#FF9933]" />}
-                      <span>{isPaused ? 'PAUSED' : 'AUTO 3s'}</span>
-                    </button>
                   </div>
 
                   {/* Name */}

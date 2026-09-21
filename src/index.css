@@ -387,32 +387,6 @@
   color: #FFFFFF;
 }
 
-/* Auto-transition timers and smooth content transitions */
-@keyframes timer-progress-3s {
-  0% {
-    width: 0%;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
-@keyframes timer-progress-1-5s {
-  0% {
-    width: 0%;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
-.animate-progress-3s {
-  animation: timer-progress-3s 3s linear forwards;
-}
-
-.animate-progress-1-5s {
-  animation: timer-progress-1-5s 1.5s linear forwards;
-}
 
 /* Mentor Carousel Slide Transitions */
 @keyframes mentor-slide-right {

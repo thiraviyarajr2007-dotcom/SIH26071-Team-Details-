@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Search,
   FileText,
@@ -15,8 +15,6 @@ import {
   Zap,
   AlertTriangle,
   Activity,
-  Play,
-  Pause,
 } from 'lucide-react';
 import { WorkflowStep } from '../types';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
@@ -43,19 +41,8 @@ const iconComponentMap: Record<string, React.ElementType> = {
 
 export const ApproachSection: React.FC<ApproachSectionProps> = ({ workflow }) => {
   const [selectedStepIndex, setSelectedStepIndex] = useState<number>(0);
-  const [isPaused, setIsPaused] = useState<boolean>(false);
   const [sectionRef, isSectionVisible] = useScrollAnimation({ threshold: 0.1 });
   const totalSteps = workflow.length;
-
-  // Auto-play through stages every 1.5 seconds (resets when active stage changes)
-  useEffect(() => {
-    if (isPaused || totalSteps <= 1) return;
-    const interval = setInterval(() => {
-      setSelectedStepIndex((prev) => (prev + 1) % totalSteps);
-    }, 1500);
-
-    return () => clearInterval(interval);
-  }, [isPaused, selectedStepIndex, totalSteps]);
 
   const activeStep = workflow[selectedStepIndex] || workflow[0];
   const IconComponent = iconComponentMap[activeStep.iconName] || Zap;
@@ -107,18 +94,6 @@ export const ApproachSection: React.FC<ApproachSectionProps> = ({ workflow }) =>
           id="approach-active-inspector"
           className="mb-12 p-6 sm:p-8 rounded-2xl bg-[#FFFFFF] border-2 border-[#000080] shadow-xl shadow-[#000080]/10 relative overflow-hidden transition-all duration-500"
         >
-          {/* Subtle top tricolor bar */}
-          <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#FF9933] via-[#FFFFFF] to-[#138808] border-b border-[#000080]" />
-
-          {/* 1.5s Auto-transition progress line */}
-          <div className="absolute top-1.5 inset-x-0 h-1.5 bg-[#000080]/10 overflow-hidden">
-            <div
-              key={`approach-progress-${selectedStepIndex}-${isPaused}`}
-              className={`h-full bg-gradient-to-r from-[#FF9933] via-[#000080] to-[#138808] ${
-                isPaused ? 'w-0' : 'animate-progress-1-5s'
-              }`}
-            />
-          </div>
 
           <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
             <IconComponent className="w-48 h-48 text-[#000080]" />
@@ -148,19 +123,8 @@ export const ApproachSection: React.FC<ApproachSectionProps> = ({ workflow }) =>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 shrink-0">
-              <button
-                type="button"
-                onClick={() => setIsPaused((prev) => !prev)}
-                className="flex items-center gap-2 font-mono text-xs text-[#000080] font-bold bg-[#FFFFFF] hover:bg-[#FF9933]/15 px-3.5 py-2 rounded-xl border-2 border-[#000080] shadow-sm cursor-pointer transition-colors"
-                title={isPaused ? "Click to resume auto-cycle" : "Click to pause"}
-              >
-                {isPaused ? <Play className="w-3.5 h-3.5 text-[#138808]" /> : <Pause className="w-3.5 h-3.5 text-[#FF9933]" />}
-                <span>{isPaused ? 'PAUSED' : 'AUTO 1.5s'}</span>
-              </button>
-
-              {/* Prev / Next controls */}
-              <div className="flex items-center gap-1.5">
+            {/* Prev / Next controls */}
+            <div className="flex items-center gap-1.5 shrink-0">
                 <button
                   type="button"
                   onClick={handlePrevStep}
@@ -182,7 +146,6 @@ export const ApproachSection: React.FC<ApproachSectionProps> = ({ workflow }) =>
               </div>
             </div>
           </div>
-        </div>
 
         {/* Workflow Progression Stepper */}
         <div className="relative">
