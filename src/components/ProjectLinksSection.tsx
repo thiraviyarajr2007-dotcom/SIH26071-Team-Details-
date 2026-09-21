@@ -121,7 +121,7 @@ export const ProjectLinksSection: React.FC<ProjectLinksSectionProps> = ({ resour
                       rel="noopener noreferrer"
                       className="w-full py-2.5 px-4 rounded-xl bg-[#FF9933] hover:bg-[#FF9933]/90 text-[#000080] font-extrabold text-xs tracking-wide flex items-center justify-center gap-2 shadow-sm border-2 border-[#000080] transition-all cursor-pointer"
                     >
-                      <span>Open Resource</span>
+                      <span>{res.url.includes('localhost') ? 'Open Local Server (Port 8050)' : 'Open Resource'}</span>
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   )}

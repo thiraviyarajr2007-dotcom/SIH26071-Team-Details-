@@ -340,18 +340,51 @@ export const MediaSpotlightSection: React.FC<MediaSpotlightSectionProps> = ({ it
               </button>
             </div>
 
-            <div className="relative w-full aspect-video bg-[#FFFFFF] flex items-center justify-center">
-              <ProjectImage
-                src={activeModalItem.mediaUrl}
-                alt={activeModalItem.title}
-                title={activeModalItem.title}
-                badge={activeModalItem.tag}
-                className="w-full h-full object-contain"
-              />
+            <div className="relative w-full aspect-video bg-[#000080]/5 flex items-center justify-center overflow-hidden">
+              {activeModalItem.type === 'clip' && (activeModalItem.mediaUrl.endsWith('.mp4') || activeModalItem.mediaUrl.endsWith('.webm')) ? (
+                <video
+                  src={activeModalItem.mediaUrl}
+                  controls
+                  autoPlay
+                  className="w-full h-full object-contain"
+                />
+              ) : activeModalItem.type === 'clip' && (activeModalItem.mediaUrl.includes('youtube.com') || activeModalItem.mediaUrl.includes('youtu.be')) ? (
+                <iframe
+                  src={activeModalItem.mediaUrl}
+                  title={activeModalItem.title}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <ProjectImage
+                  src={activeModalItem.mediaUrl}
+                  alt={activeModalItem.title}
+                  title={activeModalItem.title}
+                  badge={activeModalItem.tag}
+                  className="w-full h-full object-contain"
+                />
+              )}
             </div>
 
-            <div className="p-4 bg-[#FFFFFF] border-t-2 border-[#000080]/15 text-sm font-medium text-[#000080]">
-              {activeModalItem.description}
+            <div className="p-4 bg-[#FFFFFF] border-t-2 border-[#000080]/15 space-y-3">
+              <p className="text-sm font-medium text-[#000080]">
+                {activeModalItem.description}
+              </p>
+
+              {activeModalItem.type === 'clip' && !activeModalItem.mediaUrl.endsWith('.mp4') && (
+                <div className="p-3 bg-[#FF9933]/15 border border-[#FF9933] rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs font-mono text-[#000080]">
+                  <span>📹 Video Walkthrough Demonstration (Awaiting final MP4 or YouTube embed link)</span>
+                  <a
+                    href="https://youtube.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1 rounded-lg bg-[#000080] text-[#FFFFFF] font-bold shrink-0 hover:bg-[#FF9933] hover:text-[#000080] transition-colors"
+                  >
+                    View Demo Link →
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>

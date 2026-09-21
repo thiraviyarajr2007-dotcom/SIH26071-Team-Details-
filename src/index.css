@@ -9,13 +9,13 @@
 
 @layer base {
   body {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background-color: #FFFFFF;
     color: #000080;
   }
   
   code, pre, .font-mono {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   }
 }
 
@@ -269,23 +269,29 @@
   border-radius: 16px;
 }
 
-/* Sunburst pattern background */
+/* Ashoka Chakra Rotating Watermark Background (Light & Small) */
 .ashoka-chakra-pattern {
-  background-image: url('/images/patterns/sunburst-pattern.jpg');
-  background-size: 64px 64px;
-  background-repeat: repeat;
-  opacity: 0.04;
+  background-image: url('/images/patterns/Ashoka_Chakra_Rotating.gif');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 180px 180px;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  pointer-events: none;
 }
 
 .ashoka-chakra-pattern-lg {
-  background-image: url('/images/patterns/sunburst-pattern.jpg');
-  background-size: 96px 96px;
-  background-repeat: repeat;
-  opacity: 0.05;
+  background-image: url('/images/patterns/Ashoka_Chakra_Rotating.gif');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 220px 220px;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+  pointer-events: none;
 }
 
 .ashoka-chakra-gradient {
-  background: radial-gradient(circle at 50% 50%, rgba(0, 0, 128, 0.05) 0%, transparent 70%);
+  background: radial-gradient(circle at 50% 50%, rgba(0, 0, 128, 0.04) 0%, transparent 70%);
 }
 
 /* Premium micro-interactions */
@@ -381,4 +387,85 @@
   color: #FFFFFF;
 }
 
+/* Auto-transition timers and smooth content transitions */
+@keyframes timer-progress-3s {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes timer-progress-1-5s {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-progress-3s {
+  animation: timer-progress-3s 3s linear forwards;
+}
+
+.animate-progress-1-5s {
+  animation: timer-progress-1-5s 1.5s linear forwards;
+}
+
+/* Mentor Carousel Slide Transitions */
+@keyframes mentor-slide-right {
+  0% {
+    opacity: 0;
+    transform: translateX(36px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes mentor-slide-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-36px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.animate-slide-right {
+  animation: mentor-slide-right 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-left {
+  animation: mentor-slide-left 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-mentor-fade {
+  animation: mentor-slide-right 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Workflow Stage Swap Animation */
+@keyframes workflow-stage-swap {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-workflow-swap {
+  animation: workflow-stage-swap 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-workflow-fade {
+  animation: workflow-stage-swap 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
 

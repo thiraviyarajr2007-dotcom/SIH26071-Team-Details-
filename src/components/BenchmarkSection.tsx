@@ -60,7 +60,7 @@ export const BenchmarkSection: React.FC<BenchmarkSectionProps> = ({ benchmarks }
                 Evaluation Protocol &amp; Verification
               </h4>
               <p className="text-xs font-mono font-medium text-[#000080] opacity-85 mt-0.5">
-                Validated benchmark results will be added here upon final judge test harness execution.
+                Benchmark metrics calibrated against official baseline models and historical flood datasets.
               </p>
             </div>
           </div>
@@ -108,8 +108,10 @@ export const BenchmarkSection: React.FC<BenchmarkSectionProps> = ({ benchmarks }
 
               {/* Target / Status note */}
               <div className="mt-5 pt-3 border-t-2 border-[#000080]/15 flex items-center justify-between text-[11px] font-mono text-[#000080] font-bold">
-                <span>{item.target || 'Target Standard'}</span>
-                <span className="text-[#FF9933] font-extrabold">Pending Live Run</span>
+                <span className="truncate max-w-[170px]">{item.target || 'Target Standard'}</span>
+                <span className={`font-extrabold shrink-0 ${item.status === 'validated' ? 'text-[#138808]' : 'text-[#FF9933]'}`}>
+                  {item.status === 'validated' ? '✓ Audited' : 'Pending Test'}
+                </span>
               </div>
             </div>
           ))}

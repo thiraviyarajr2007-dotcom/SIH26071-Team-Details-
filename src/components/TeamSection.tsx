@@ -59,6 +59,68 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ members }) => {
           </div>
         </div>
 
+        {/* Dedicated Team Logo & Identity Banner */}
+        <div 
+          id="team-identity-banner"
+          className="mb-10 rounded-3xl bg-gradient-to-r from-[#FFFFFF] via-[#FF9933]/5 to-[#138808]/5 border-2 border-[#000080]/20 p-6 sm:p-8 premium-shadow-lg relative overflow-hidden flex flex-col md:flex-row items-center gap-6 sm:gap-8"
+        >
+          {/* Subtle background decoration */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF9933]/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#138808]/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#FF9933] via-[#FFFFFF] to-[#138808]" />
+
+          {/* Endovers07 Logo Container - Large, Filled, Crisp */}
+          <div className="relative group shrink-0">
+            <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl bg-[#FFFFFF] border-2 border-[#000080] p-2 flex items-center justify-center premium-shadow-md group-hover:scale-105 transition-transform duration-300 shadow-md">
+              <img 
+                src="/images/logos/team-logo.png" 
+                alt="Team Endovers07 Official Logo" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+            {/* Verified Team Pill Badge */}
+            <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap px-2.5 py-0.5 rounded-full bg-[#000080] text-[#FFFFFF] font-mono text-[10px] font-extrabold shadow-sm tracking-wider uppercase">
+              OFFICIAL LOGO
+            </div>
+          </div>
+
+          {/* Team Identity Details */}
+          <div className="flex-1 text-center md:text-left space-y-2.5">
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
+              <span className="px-3 py-1 rounded-full bg-[#FF9933]/15 border border-[#FF9933] text-[#000080] font-mono text-xs font-extrabold uppercase tracking-wider">
+                TEAM ENDOVERS07
+              </span>
+              <span className="px-3 py-1 rounded-full bg-[#138808]/15 border border-[#138808] text-[#138808] font-mono text-xs font-extrabold uppercase tracking-wider">
+                SIH 2026 GRAND FINALE
+              </span>
+            </div>
+
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#000080] tracking-tight">
+              Endovers07 Engineering Unit
+            </h3>
+
+            <p className="text-sm font-medium text-[#000080]/85 max-w-2xl leading-relaxed">
+              Official innovation team behind <strong className="text-[#000080] font-extrabold">HydroTwin-AI</strong> — building an AI-powered hydrological digital twin for flood early-warning &amp; dynamic inundation prediction for the Chennai Metropolitan River Basin.
+            </p>
+
+            {/* Quick Team Tags */}
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 pt-1">
+              <span className="text-[11px] font-mono font-bold px-2.5 py-1 rounded-lg bg-[#FFFFFF] border border-[#000080]/20 text-[#000080]">
+                🤖 AI &amp; Hydrology
+              </span>
+              <span className="text-[11px] font-mono font-bold px-2.5 py-1 rounded-lg bg-[#FFFFFF] border border-[#000080]/20 text-[#000080]">
+                📡 IoT Edge Sensors
+              </span>
+              <span className="text-[11px] font-mono font-bold px-2.5 py-1 rounded-lg bg-[#FFFFFF] border border-[#000080]/20 text-[#000080]">
+                🗺️ GIS &amp; Digital Twin
+              </span>
+              <span className="text-[11px] font-mono font-bold px-2.5 py-1 rounded-lg bg-[#FFFFFF] border border-[#000080]/20 text-[#138808]">
+                ✓ 6 Multi-disciplinary Innovators
+              </span>
+            </div>
+          </div>
+        </div>
+
         {/* Editorial Composition - Featured Member + Grid */}
         <div className="space-y-8">
           {/* Featured Member - First team member highlighted */}
@@ -142,13 +204,6 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ members }) => {
                         aria-label={`${members[0].name} LinkedIn`}
                       >
                         <Linkedin className="w-5 h-5 text-[#0A66C2]" />
-                      </a>
-                    )}
-                        className="p-3 rounded-xl bg-[#FFFFFF] hover:bg-[#FF9933] border-2 border-[#000080] hover:border-[#FF9933] premium-icon-hover focus-ring"
-                        title={`${members[0].name} LinkedIn`}
-                        aria-label={`${members[0].name} LinkedIn`}
-                      >
-                        <Linkedin className="w-5 h-5 text-[#0A66C2] group-hover:text-[#FFFFFF]" />
                       </a>
                     )}
 

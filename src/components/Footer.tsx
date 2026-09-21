@@ -34,8 +34,12 @@ export const Footer: React.FC<FooterProps> = ({ projectMetadata }) => {
           {/* Brand & Mission (md: 5 cols) */}
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#FFFFFF] border-2 border-[#000080] flex items-center justify-center p-0.5">
-                <Award className="w-5 h-5 text-[#FF9933]" />
+              <div className="w-10 h-10 rounded-xl bg-[#FFFFFF] border-2 border-[#000080] flex items-center justify-center p-1 shadow-sm overflow-hidden shrink-0">
+                <img 
+                  src="/images/logos/team-logo.png" 
+                  alt="Endovers07 Logo" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <span className="font-extrabold text-lg text-[#000080] tracking-tight block">

@@ -55,28 +55,32 @@ export const Navbar: React.FC<NavbarProps> = ({ projectMetadata, activeSection }
 
       <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 flex items-center justify-between">
         {/* LEFT: Government Logo + Project / Team Name */}
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <img 
             src="/images/logos/government-logo.png" 
             alt="Ministry of Education Government of India" 
-            className="h-5 sm:h-6 object-contain"
+            className="h-6 sm:h-7 xl:h-8 object-contain max-w-[130px] sm:max-w-[155px] xl:max-w-none shrink-0"
           />
           <a
             href="#home"
             onClick={(e) => handleScrollTo(e, '#home')}
-            className="flex items-center gap-1 sm:gap-1.5 group focus:outline-none"
+            className="flex items-center gap-1.5 sm:gap-2 group focus:outline-none shrink-0"
             id="nav-brand"
           >
-            <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-xl bg-gradient-to-tr from-[#FF9933] via-[#FFFFFF] to-[#138808] flex items-center justify-center p-0.5 border border-[#000080] shadow-sm group-hover:scale-105 transition-transform duration-200 flex-shrink-0">
-              <div className="w-full h-full bg-[#000080] rounded-[5px] sm:rounded-[6px] flex items-center justify-center">
-                <Award className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#FF9933]" />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-tr from-[#FF9933] via-[#000080]/20 to-[#138808] flex items-center justify-center p-0.5 border border-[#000080]/30 shadow-sm group-hover:scale-105 transition-transform duration-200 shrink-0 bg-[#FFFFFF]">
+              <div className="w-full h-full bg-[#FFFFFF] rounded-[6px] sm:rounded-[7px] flex items-center justify-center overflow-hidden">
+                <img 
+                  src="/images/logos/team-logo.png" 
+                  alt="Endovers07 Logo" 
+                  className="w-full h-full object-contain p-0.5" 
+                />
               </div>
             </div>
             <div className="flex flex-col min-w-0">
-              <span className="font-extrabold text-[9px] sm:text-[10px] tracking-tight text-[#000080] group-hover:text-[#FF9933] transition-colors leading-tight truncate">
+              <span className="font-extrabold text-xs sm:text-sm tracking-tight text-[#000080] group-hover:text-[#FF9933] transition-colors leading-tight truncate">
                 {projectMetadata.projectName}
               </span>
-              <span className="text-[8px] font-mono text-[#138808] tracking-wider uppercase font-bold leading-none truncate">
+              <span className="text-[10px] sm:text-[11px] font-mono text-[#138808] tracking-wider uppercase font-bold leading-none truncate">
                 {projectMetadata.teamName}
               </span>
             </div>
@@ -84,10 +88,9 @@ export const Navbar: React.FC<NavbarProps> = ({ projectMetadata, activeSection }
         </div>
 
         {/* CENTER: Navigation Links (Desktop) */}
-        <nav className="hidden lg:flex items-center gap-0" aria-label="Main Navigation">
-          {navLinks.map((item, index) => {
+        <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 2xl:gap-1.5 shrink min-w-0" aria-label="Main Navigation">
+          {navLinks.map((item) => {
             const isActive = activeSection === item.href.replace('#', '');
-            const activeColor = index % 3 === 0 ? '#FF9933' : index % 3 === 1 ? '#000080' : '#138808';
             
             return (
               <a
@@ -95,22 +98,17 @@ export const Navbar: React.FC<NavbarProps> = ({ projectMetadata, activeSection }
                 href={item.href}
                 onClick={(e) => handleScrollTo(e, item.href)}
                 id={`nav-link-${item.label.toLowerCase()}`}
-                className={`relative px-1 py-0.5 rounded text-[9px] xl:text-[10px] font-bold transition-all duration-200 ${
+                className={`relative px-1.5 xl:px-2 2xl:px-2.5 py-1 xl:py-1.5 rounded-lg text-[10.5px] xl:text-xs font-bold transition-all duration-200 whitespace-nowrap shrink-0 ${
                   isActive
-                    ? 'text-[#FFFFFF] border-2 shadow-sm scale-105'
-                    : 'text-[#000080] hover:text-[#FF9933] hover:bg-[#FF9933]/10 border-2 border-transparent'
+                    ? 'bg-[#000080] text-[#FFFFFF] shadow-sm'
+                    : 'text-[#000080] hover:text-[#FF9933] hover:bg-[#FF9933]/10'
                 }`}
-                style={{
-                  backgroundColor: isActive ? activeColor : 'transparent',
-                  borderColor: isActive ? activeColor : 'transparent'
-                }}
               >
                 {item.label}
                 {/* Active indicator dot */}
                 {isActive && (
                   <span 
-                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full"
-                    style={{ backgroundColor: activeColor }}
+                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#FF9933]"
                   />
                 )}
               </a>
@@ -119,13 +117,16 @@ export const Navbar: React.FC<NavbarProps> = ({ projectMetadata, activeSection }
         </nav>
 
         {/* RIGHT: Team Logo + SIH Official Badge / Logo with Tiranga */}
-        <div className="hidden sm:flex items-center gap-1 sm:gap-1.5" id="nav-sih-badge">
-          <img 
-            src="/images/logos/team-logo.png" 
-            alt="ENDEAVOURS07" 
-            className="h-5 sm:h-6 object-contain"
-          />
-          <div className="flex items-center gap-1 sm:gap-1.5 px-1 sm:px-1.5 py-0.5 rounded-xl bg-[#FFFFFF] border-2 border-[#000080] shadow-sm">
+        <div className="hidden sm:flex items-center gap-2 shrink-0" id="nav-sih-badge">
+          <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1 rounded-xl bg-[#FFFFFF] border border-[#000080]/30 shadow-sm hover:border-[#FF9933] transition-colors">
+            {/* Endovers07 Logo inside styled container */}
+            <div className="w-6 h-6 rounded-md bg-[#FFFFFF] border border-[#000080]/20 flex items-center justify-center p-0.5 overflow-hidden shrink-0 shadow-xs">
+              <img 
+                src="/images/logos/team-logo.png" 
+                alt="Endovers07 Logo" 
+                className="w-full h-full object-contain"
+              />
+            </div>
             {/* Tricolor Indicator */}
             <div className="flex flex-col gap-0.5">
               <span className="w-2.5 h-0.5 rounded-sm bg-[#FF9933]" />
@@ -133,11 +134,11 @@ export const Navbar: React.FC<NavbarProps> = ({ projectMetadata, activeSection }
               <span className="w-2.5 h-0.5 rounded-sm bg-[#138808]" />
             </div>
             <div className="flex flex-col text-left">
-              <span className="text-[7px] sm:text-[8px] font-extrabold tracking-widest text-[#000080] uppercase leading-none">
-                SMART INDIA
+              <span className="text-[8px] sm:text-[9px] font-extrabold tracking-widest text-[#000080] uppercase leading-none font-mono">
+                {projectMetadata.teamName}
               </span>
-              <span className="text-[8px] sm:text-[9px] font-extrabold text-[#FF9933] leading-tight">
-                HACKATHON 2026
+              <span className="text-[9px] sm:text-[10px] font-extrabold text-[#FF9933] leading-tight">
+                SIH 2026
               </span>
             </div>
           </div>
@@ -149,7 +150,7 @@ export const Navbar: React.FC<NavbarProps> = ({ projectMetadata, activeSection }
             id="mobile-menu-toggle"
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1.5 rounded-xl bg-[#FFFFFF] border-2 border-[#000080] text-[#000080] hover:bg-[#FF9933] hover:text-[#FFFFFF] focus:outline-none"
+            className="p-2 rounded-xl bg-[#FFFFFF] border border-[#000080]/30 text-[#000080] hover:bg-[#FF9933] hover:text-[#FFFFFF] focus:outline-none cursor-pointer"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -164,42 +165,42 @@ export const Navbar: React.FC<NavbarProps> = ({ projectMetadata, activeSection }
           className="lg:hidden border-b-2 border-[#FF9933] bg-[#FFFFFF] px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top duration-200"
         >
           {/* SIH Mobile Header */}
-          <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#000080]/20">
-            <div className="flex items-center gap-1.5">
+          <div className="flex items-center justify-between pb-2 mb-3 border-b border-[#000080]/20">
+            <div className="flex items-center gap-2">
+              <img 
+                src="/images/logos/team-logo.png" 
+                alt="Endovers07" 
+                className="w-5 h-5 object-contain" 
+              />
               <div className="flex flex-col gap-0.5">
-                <span className="w-3 h-0.5 rounded-sm bg-[#FF9933]" />
-                <span className="w-3 h-0.5 rounded-sm bg-[#FFFFFF] border border-[#000080]" />
-                <span className="w-3 h-0.5 rounded-sm bg-[#138808]" />
+                <span className="w-2.5 h-0.5 rounded-sm bg-[#FF9933]" />
+                <span className="w-2.5 h-0.5 rounded-sm bg-[#FFFFFF] border border-[#000080]" />
+                <span className="w-2.5 h-0.5 rounded-sm bg-[#138808]" />
               </div>
-              <span className="text-[10px] font-mono font-bold text-[#000080]">
-                SMART INDIA HACKATHON 2026
+              <span className="text-xs font-mono font-bold text-[#000080]">
+                ENDOVERS07 // SIH 2026
               </span>
             </div>
-            <span className="text-[9px] font-mono font-bold text-[#FF9933]">JUDGE PORTAL</span>
+            <span className="text-xs font-mono font-bold text-[#FF9933]">PORTAL</span>
           </div>
 
-          <div className="grid grid-cols-2 gap-1.5">
-            {navLinks.map((item, index) => {
+          <div className="grid grid-cols-2 gap-2">
+            {navLinks.map((item) => {
               const isActive = activeSection === item.href.replace('#', '');
-              const activeColor = index % 3 === 0 ? '#FF9933' : index % 3 === 1 ? '#000080' : '#138808';
               
               return (
                 <a
                   key={item.label}
                   href={item.href}
                   onClick={(e) => handleScrollTo(e, item.href)}
-                  className={`flex items-center justify-between px-2 py-1.5 rounded text-[10px] font-bold transition-colors border-2 ${
+                  className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs font-bold transition-colors ${
                     isActive
-                      ? 'text-[#FFFFFF]'
-                      : 'text-[#000080] hover:text-[#FF9933] bg-[#FFFFFF]'
+                      ? 'bg-[#000080] text-[#FFFFFF]'
+                      : 'text-[#000080] hover:text-[#FF9933] bg-[#000080]/5'
                   }`}
-                  style={{
-                    backgroundColor: isActive ? activeColor : '#FFFFFF',
-                    borderColor: isActive ? activeColor : 'rgba(0, 0, 128, 0.2)'
-                  }}
                 >
                   <span>{item.label}</span>
-                  <ChevronRight className="w-3 h-3 text-[#FF9933]" />
+                  <ChevronRight className={`w-3.5 h-3.5 ${isActive ? 'text-[#FF9933]' : 'text-[#000080]/60'}`} />
                 </a>
               );
             })}

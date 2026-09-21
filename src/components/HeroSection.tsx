@@ -35,6 +35,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       {/* Simple Ashoka Chakra-inspired Background */}
       <div className="absolute inset-0 ashoka-chakra-gradient pointer-events-none" />
 
+      {/* Subtle Rotating Ashoka Chakra Watermark GIF (Small & Very Light) */}
+      <div 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0 flex items-center justify-center"
+        aria-hidden="true"
+      >
+        <img
+          src="/images/patterns/Ashoka_Chakra_Rotating.gif"
+          alt=""
+          className="w-44 h-44 sm:w-60 sm:h-60 object-contain opacity-[0.06] mix-blend-multiply select-none"
+        />
+      </div>
+
       {/* Tricolor Ambient Aura: Saffron Top-Left, Ashoka Navy Center, India Green Bottom-Right */}
       <div 
         className={`absolute top-12 left-1/4 w-[450px] sm:w-[600px] h-[350px] bg-[#FF9933]/15 rounded-full blur-[140px] pointer-events-none transition-all duration-1000 ${

@@ -114,52 +114,57 @@ export const TechnologySection: React.FC<TechnologySectionProps> = ({ technologi
           {/* Top tricolor accent */}
           <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#FF9933] via-[#FFFFFF] to-[#138808] border-b border-[#000080]" />
 
-          <div className="flex flex-col items-center gap-3">
+          <div className="flex flex-col gap-2">
             {architectureLayers.map((layer, index) => {
               const LayerIcon = layer.icon;
               const layerTechs = technologies.filter(t => t.category === layer.name);
               
               return (
-                <div key={layer.name} className="w-full flex items-center gap-4">
-                  {/* Layer Label */}
-                  <div className="w-32 shrink-0 text-right">
-                    <div className="text-xs font-mono font-bold text-[#000080] mb-1">{layer.name}</div>
-                    <div className="w-full h-1 rounded-full" style={{ backgroundColor: layer.color }} />
-                  </div>
+                <React.Fragment key={layer.name}>
+                  <div className="w-full flex items-center gap-4">
+                    {/* Layer Label */}
+                    <div className="w-28 sm:w-32 shrink-0 text-right">
+                      <div className="text-xs font-mono font-bold text-[#000080] mb-1">{layer.name}</div>
+                      <div className="w-full h-1 rounded-full" style={{ backgroundColor: layer.color }} />
+                    </div>
 
-                  {/* Layer Visual Block */}
-                  <div 
-                    className="flex-1 p-4 rounded-xl border-2 transition-all hover:scale-105"
-                    style={{ 
-                      borderColor: layer.color,
-                      backgroundColor: `${layer.color}10`
-                    }}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div 
-                        className="w-10 h-10 rounded-lg flex items-center justify-center"
-                        style={{ backgroundColor: layer.color }}
-                      >
-                        <LayerIcon className="w-5 h-5 text-[#FFFFFF]" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="text-sm font-extrabold text-[#000080] mb-1">
-                          {layerTechs.length} Component{layerTechs.length !== 1 ? 's' : ''}
+                    {/* Layer Visual Block */}
+                    <div 
+                      className="flex-1 p-3 sm:p-4 rounded-xl border-2 transition-all hover:scale-[1.01]"
+                      style={{ 
+                        borderColor: layer.color,
+                        backgroundColor: `${layer.color}10`
+                      }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div 
+                          className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center shrink-0"
+                          style={{ backgroundColor: layer.color }}
+                        >
+                          <LayerIcon className="w-5 h-5 text-[#FFFFFF]" />
                         </div>
-                        <div className="text-xs font-mono text-[#000080] opacity-75">
-                          {layerTechs.map(t => t.name).join(', ') || 'TBD'}
+                        <div className="flex-1 min-w-0">
+                          <div className="text-xs sm:text-sm font-extrabold text-[#000080] mb-0.5">
+                            {layerTechs.length} Component{layerTechs.length !== 1 ? 's' : ''}
+                          </div>
+                          <div className="text-[11px] sm:text-xs font-mono text-[#000080] opacity-80 truncate">
+                            {layerTechs.map(t => t.name).join(', ') || 'Integrated Subsystem'}
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Connection Arrow */}
+                  {/* Vertical Flow Connector */}
                   {index < architectureLayers.length - 1 && (
-                    <div className="w-12 flex justify-center">
-                      <ArrowDown className="w-5 h-5 text-[#000080]" />
+                    <div className="flex items-center justify-center pl-28 sm:pl-32 py-0.5">
+                      <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#000080]/5 text-[10px] font-mono text-[#000080]/80 border border-[#000080]/15">
+                        <ArrowDown className="w-3 h-3 text-[#FF9933]" />
+                        <span className="hidden sm:inline">Pipeline Flow</span>
+                      </div>
                     </div>
                   )}
-                </div>
+                </React.Fragment>
               );
             })}
           </div>

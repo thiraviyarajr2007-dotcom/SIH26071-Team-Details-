@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Search,
   FileText,
@@ -11,9 +11,12 @@ import {
   ShieldCheck,
   CloudLightning,
   ChevronRight,
+  ChevronLeft,
   Zap,
   AlertTriangle,
   Activity,
+  Play,
+  Pause,
 } from 'lucide-react';
 import { WorkflowStep } from '../types';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
@@ -40,10 +43,30 @@ const iconComponentMap: Record<string, React.ElementType> = {
 
 export const ApproachSection: React.FC<ApproachSectionProps> = ({ workflow }) => {
   const [selectedStepIndex, setSelectedStepIndex] = useState<number>(0);
+  const [isPaused, setIsPaused] = useState<boolean>(false);
   const [sectionRef, isSectionVisible] = useScrollAnimation({ threshold: 0.1 });
+  const totalSteps = workflow.length;
+
+  // Auto-play through stages every 1.5 seconds (resets when active stage changes)
+  useEffect(() => {
+    if (isPaused || totalSteps <= 1) return;
+    const interval = setInterval(() => {
+      setSelectedStepIndex((prev) => (prev + 1) % totalSteps);
+    }, 1500);
+
+    return () => clearInterval(interval);
+  }, [isPaused, selectedStepIndex, totalSteps]);
 
   const activeStep = workflow[selectedStepIndex] || workflow[0];
   const IconComponent = iconComponentMap[activeStep.iconName] || Zap;
+
+  const handlePrevStep = () => {
+    setSelectedStepIndex((prev) => (prev - 1 + totalSteps) % totalSteps);
+  };
+
+  const handleNextStep = () => {
+    setSelectedStepIndex((prev) => (prev + 1) % totalSteps);
+  };
 
   return (
     <section 
@@ -82,16 +105,29 @@ export const ApproachSection: React.FC<ApproachSectionProps> = ({ workflow }) =>
         {/* Highlight Focus Inspection Box for Selected Step */}
         <div
           id="approach-active-inspector"
-          className="mb-12 p-6 sm:p-8 rounded-2xl bg-[#FFFFFF] border-2 border-[#000080] shadow-xl shadow-[#000080]/10 relative overflow-hidden"
+          className="mb-12 p-6 sm:p-8 rounded-2xl bg-[#FFFFFF] border-2 border-[#000080] shadow-xl shadow-[#000080]/10 relative overflow-hidden transition-all duration-500"
         >
           {/* Subtle top tricolor bar */}
           <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#FF9933] via-[#FFFFFF] to-[#138808] border-b border-[#000080]" />
+
+          {/* 1.5s Auto-transition progress line */}
+          <div className="absolute top-1.5 inset-x-0 h-1.5 bg-[#000080]/10 overflow-hidden">
+            <div
+              key={`approach-progress-${selectedStepIndex}-${isPaused}`}
+              className={`h-full bg-gradient-to-r from-[#FF9933] via-[#000080] to-[#138808] ${
+                isPaused ? 'w-0' : 'animate-progress-1-5s'
+              }`}
+            />
+          </div>
 
           <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
             <IconComponent className="w-48 h-48 text-[#000080]" />
           </div>
 
-          <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div 
+            key={`step-content-${selectedStepIndex}`}
+            className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 animate-workflow-swap"
+          >
             <div className="flex items-start gap-4">
               <div className="w-14 h-14 rounded-2xl bg-[#000080] border-2 border-[#FF9933] flex items-center justify-center shrink-0 shadow-md">
                 <IconComponent className="w-7 h-7 text-[#FF9933]" />
@@ -103,7 +139,7 @@ export const ApproachSection: React.FC<ApproachSectionProps> = ({ workflow }) =>
                   </span>
                   <span className="text-xs font-mono text-[#138808] font-extrabold">ENGINEERING PIPELINE</span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-[#000080] tracking-tight mt-1.5">
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-[#000080] tracking-tight mt-1.5 transition-all">
                   {activeStep.title}
                 </h3>
                 <p className="text-sm sm:text-base font-medium text-[#000080] opacity-85 mt-2 max-w-2xl leading-relaxed">
@@ -112,20 +148,46 @@ export const ApproachSection: React.FC<ApproachSectionProps> = ({ workflow }) =>
               </div>
             </div>
 
-            <div className="flex items-center gap-2 font-mono text-xs text-[#000080] font-bold shrink-0 bg-[#FFFFFF] px-3.5 py-2 rounded-xl border-2 border-[#000080]">
-              <span className="w-2 h-2 rounded-full bg-[#138808] animate-pulse" />
-              <span>ACTIVE STAGE INSPECTION</span>
+            <div className="flex items-center gap-3 shrink-0">
+              <button
+                type="button"
+                onClick={() => setIsPaused((prev) => !prev)}
+                className="flex items-center gap-2 font-mono text-xs text-[#000080] font-bold bg-[#FFFFFF] hover:bg-[#FF9933]/15 px-3.5 py-2 rounded-xl border-2 border-[#000080] shadow-sm cursor-pointer transition-colors"
+                title={isPaused ? "Click to resume auto-cycle" : "Click to pause"}
+              >
+                {isPaused ? <Play className="w-3.5 h-3.5 text-[#138808]" /> : <Pause className="w-3.5 h-3.5 text-[#FF9933]" />}
+                <span>{isPaused ? 'PAUSED' : 'AUTO 1.5s'}</span>
+              </button>
+
+              {/* Prev / Next controls */}
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={handlePrevStep}
+                  className="p-2 rounded-xl bg-[#FFFFFF] border-2 border-[#000080] hover:bg-[#FF9933] text-[#000080] hover:text-[#FFFFFF] cursor-pointer transition-colors"
+                  aria-label="Previous Stage"
+                  title="Previous Stage"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={handleNextStep}
+                  className="p-2 rounded-xl bg-[#FFFFFF] border-2 border-[#000080] hover:bg-[#FF9933] text-[#000080] hover:text-[#FFFFFF] cursor-pointer transition-colors"
+                  aria-label="Next Stage"
+                  title="Next Stage"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Workflow Progression Stepper with Animated Connecting Lines */}
+        {/* Workflow Progression Stepper */}
         <div className="relative">
-          {/* Connecting glowing line on desktop */}
-          <div className="hidden lg:block absolute top-7 left-8 right-8 h-1 bg-gradient-to-r from-[#FF9933] via-[#000080] to-[#138808] opacity-30 -z-0" />
-
-          {/* Stepper Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-10 gap-3 relative z-10">
+          {/* Stepper Grid: 2 clean rows of 5 on desktop */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4 relative z-10">
             {workflow.map((step, idx) => {
               const StepIcon = iconComponentMap[step.iconName] || Zap;
               const isSelected = selectedStepIndex === idx;
@@ -135,27 +197,34 @@ export const ApproachSection: React.FC<ApproachSectionProps> = ({ workflow }) =>
                   key={step.number}
                   id={`workflow-step-${step.number}`}
                   onClick={() => setSelectedStepIndex(idx)}
-                  className={`flex flex-col items-center text-center p-3 rounded-xl transition-all duration-200 cursor-pointer group focus:outline-none ${
+                  className={`relative flex flex-col items-center text-center p-3.5 rounded-2xl transition-all duration-300 cursor-pointer group focus:outline-none ${
                     isSelected
-                      ? 'bg-[#FFFFFF] border-2 border-[#FF9933] shadow-md scale-105'
-                      : 'bg-[#FFFFFF] border-2 border-[#000080]/20 hover:border-[#000080] hover:bg-[#FFFFFF]'
+                      ? 'bg-[#000080]/5 border-2 border-[#FF9933] shadow-lg shadow-[#FF9933]/20 scale-[1.03]'
+                      : 'bg-[#FFFFFF] border border-[#000080]/20 hover:border-[#000080]/50 hover:bg-[#000080]/[0.02]'
                   }`}
                 >
+                  {/* Active glowing indicator pill */}
+                  {isSelected && (
+                    <span className="absolute -top-1.5 px-2 py-0.5 rounded-full text-[9px] font-mono font-extrabold bg-[#FF9933] text-[#000080] border border-[#000080] shadow-sm animate-pulse">
+                      ACTIVE
+                    </span>
+                  )}
+
                   {/* Step Circle */}
                   <div
                     className={`w-11 h-11 rounded-xl flex items-center justify-center mb-2.5 transition-all ${
                       isSelected
-                        ? 'bg-[#FF9933] border border-[#000080] text-[#FFFFFF] shadow-sm font-bold'
-                        : 'bg-[#FFFFFF] border border-[#000080] text-[#000080] group-hover:text-[#FF9933] group-hover:border-[#FF9933]'
+                        ? 'bg-[#FF9933] border border-[#000080] text-[#000080] shadow-md font-bold scale-105'
+                        : 'bg-[#FFFFFF] border border-[#000080]/30 text-[#000080] group-hover:text-[#FF9933] group-hover:border-[#FF9933]'
                     }`}
                   >
                     <StepIcon className="w-5 h-5" />
                   </div>
 
-                  <span className="font-mono text-[10px] text-[#FF9933] font-extrabold block">
-                    {step.number}
+                  <span className="font-mono text-xs text-[#FF9933] font-extrabold block">
+                    STAGE {step.number}
                   </span>
-                  <span className="text-xs font-extrabold text-[#000080] line-clamp-2 mt-0.5 leading-snug">
+                  <span className="text-xs sm:text-sm font-bold text-[#000080] line-clamp-2 mt-1 leading-snug">
                     {step.title}
                   </span>
                 </button>
