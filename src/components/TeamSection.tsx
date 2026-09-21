@@ -69,12 +69,12 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ members }) => {
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#138808]/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#FF9933] via-[#FFFFFF] to-[#138808]" />
 
-          {/* Endovers07 Logo Container - Large, Filled, Crisp */}
+          {/* ENDEAVOURS07 Logo Container - Large, Filled, Crisp */}
           <div className="relative group shrink-0">
             <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl bg-[#FFFFFF] border-2 border-[#000080] p-2 flex items-center justify-center premium-shadow-md group-hover:scale-105 transition-transform duration-300 shadow-md">
               <img 
                 src="/images/logos/team-logo.png" 
-                alt="Team Endovers07 Official Logo" 
+                alt="Team ENDEAVOURS07 Official Logo" 
                 className="w-full h-full object-contain"
               />
             </div>
@@ -88,7 +88,7 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ members }) => {
           <div className="flex-1 text-center md:text-left space-y-2.5">
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
               <span className="px-3 py-1 rounded-full bg-[#FF9933]/15 border border-[#FF9933] text-[#000080] font-mono text-xs font-extrabold uppercase tracking-wider">
-                TEAM ENDOVERS07
+                TEAM ENDEAVOURS07
               </span>
               <span className="px-3 py-1 rounded-full bg-[#138808]/15 border border-[#138808] text-[#138808] font-mono text-xs font-extrabold uppercase tracking-wider">
                 SIH 2026 GRAND FINALE
@@ -96,7 +96,7 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ members }) => {
             </div>
 
             <h3 className="text-2xl sm:text-3xl font-extrabold text-[#000080] tracking-tight">
-              Endovers07 Engineering Unit
+              ENDEAVOURS07 Engineering Unit
             </h3>
 
             <p className="text-sm font-medium text-[#000080]/85 max-w-2xl leading-relaxed">

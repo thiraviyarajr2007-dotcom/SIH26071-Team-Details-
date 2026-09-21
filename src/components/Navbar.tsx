@@ -71,7 +71,7 @@ export const Navbar: React.FC<NavbarProps> = ({ projectMetadata, activeSection }
               <div className="w-full h-full bg-[#FFFFFF] rounded-[6px] sm:rounded-[7px] flex items-center justify-center overflow-hidden">
                 <img 
                   src="/images/logos/team-logo.png" 
-                  alt="Endovers07 Logo" 
+                  alt="ENDEAVOURS07 Logo" 
                   className="w-full h-full object-contain p-0.5" 
                 />
               </div>
@@ -119,12 +119,12 @@ export const Navbar: React.FC<NavbarProps> = ({ projectMetadata, activeSection }
         {/* RIGHT: Team Logo + SIH Official Badge / Logo with Tiranga */}
         <div className="hidden sm:flex items-center gap-2 shrink-0" id="nav-sih-badge">
           <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1 rounded-xl bg-[#FFFFFF] border border-[#000080]/30 shadow-sm hover:border-[#FF9933] transition-colors">
-            {/* Endovers07 Logo inside styled container */}
+            {/* ENDEAVOURS07 Logo inside styled container */}
             <div className="w-6 h-6 rounded-md bg-[#FFFFFF] border border-[#000080]/20 flex items-center justify-center p-0.5 overflow-hidden shrink-0 shadow-xs">
               <img 
                 src="/images/logos/team-logo.png" 
-                alt="Endovers07 Logo" 
-                className="w-full h-full object-contain"
+                alt="ENDEAVOURS07 Logo" 
+                className="w-full h-full object-contain" 
               />
             </div>
             {/* Tricolor Indicator */}
@@ -169,7 +169,7 @@ export const Navbar: React.FC<NavbarProps> = ({ projectMetadata, activeSection }
             <div className="flex items-center gap-2">
               <img 
                 src="/images/logos/team-logo.png" 
-                alt="Endovers07" 
+                alt="ENDEAVOURS07" 
                 className="w-5 h-5 object-contain" 
               />
               <div className="flex flex-col gap-0.5">
@@ -178,7 +178,7 @@ export const Navbar: React.FC<NavbarProps> = ({ projectMetadata, activeSection }
                 <span className="w-2.5 h-0.5 rounded-sm bg-[#138808]" />
               </div>
               <span className="text-xs font-mono font-bold text-[#000080]">
-                ENDOVERS07 // SIH 2026
+                ENDEAVOURS07 // SIH 2026
               </span>
             </div>
             <span className="text-xs font-mono font-bold text-[#FF9933]">PORTAL</span>

@@ -15,7 +15,7 @@ import {
 
 export const initialProjectMetadata: ProjectMetadata = {
   projectName: "HydroTwin-AI",
-  teamName: "Endovers07",
+  teamName: "ENDEAVOURS07",
   tagline: "Flood Early-Warning & Inundation Prediction System for Chennai Metropolitan River Basin",
   edition: "SIH 2026",
   pillarTags: ["SIH 2026", "Innovation", "Technology", "Impact"],

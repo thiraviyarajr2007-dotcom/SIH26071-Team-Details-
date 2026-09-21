@@ -37,7 +37,7 @@ export const Footer: React.FC<FooterProps> = ({ projectMetadata }) => {
               <div className="w-10 h-10 rounded-xl bg-[#FFFFFF] border-2 border-[#000080] flex items-center justify-center p-1 shadow-sm overflow-hidden shrink-0">
                 <img 
                   src="/images/logos/team-logo.png" 
-                  alt="Endovers07 Logo" 
+                  alt="ENDEAVOURS07 Logo" 
                   className="w-full h-full object-contain"
                 />
               </div>
