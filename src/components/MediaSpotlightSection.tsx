@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   ChevronLeft,
   ChevronRight,
-  Pause,
   Play,
   PlayCircle,
   Sparkles,
@@ -127,23 +126,14 @@ export const MediaSpotlightSection: React.FC<MediaSpotlightSectionProps> = ({ it
               </span>
             </h2>
             <p className="text-xs sm:text-sm font-mono font-medium text-[#000080] mt-2 max-w-xl opacity-85">
-              Project UI Dashboards, System Architecture &amp; Prototype Recordings. (Ready for custom project media).
+              System Architecture Flow, On-Ground Field Case Studies &amp; Emergency Response Team Collaboration.
             </p>
           </div>
           
           <div className="flex items-center gap-3">
-            <span className="text-xs font-mono font-extrabold text-[#000080]">
+            <span className="text-xs font-mono font-extrabold text-[#000080] px-3 py-1 rounded-full bg-[#000080]/5 border border-[#000080]/20">
               {currentIndex + 1} / {total}
             </span>
-            <button
-              onClick={() => setIsPaused(!isPaused)}
-              className="p-1.5 px-3 rounded-lg bg-[#FFFFFF] border-2 border-[#000080] text-[#000080] hover:bg-[#FF9933] hover:text-[#FFFFFF] text-xs flex items-center gap-1.5 font-mono cursor-pointer transition-colors font-bold"
-              title={isPaused ? 'Resume auto-play' : 'Pause auto-play'}
-              aria-label={isPaused ? 'Resume auto-play' : 'Pause auto-play'}
-            >
-              {isPaused ? <Play className="w-3.5 h-3.5" /> : <Pause className="w-3.5 h-3.5" />}
-              <span className="hidden sm:inline">{isPaused ? 'Paused' : 'Auto 4.5s'}</span>
-            </button>
           </div>
         </div>
 
@@ -175,7 +165,7 @@ export const MediaSpotlightSection: React.FC<MediaSpotlightSectionProps> = ({ it
                 alt={prevItem.title}
                 title={prevItem.title}
                 badge={prevItem.tag}
-                className="w-full h-full object-cover"
+                className={`w-full h-full ${prevItem.mediaUrl.includes('flow') || prevItem.mediaUrl.includes('graph') ? 'object-contain p-2 bg-white' : 'object-cover'}`}
               />
               {prevItem.type === 'clip' && (
                 <div className="absolute inset-0 flex items-center justify-center bg-[#000080]/30">
@@ -193,14 +183,17 @@ export const MediaSpotlightSection: React.FC<MediaSpotlightSectionProps> = ({ it
               <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#FF9933] via-[#FFFFFF] to-[#138808] border-b border-[#000080] z-20" />
 
               {/* Media Container with Zoom on Hover */}
-              <div className="relative w-full h-[320px] sm:h-[440px] overflow-hidden bg-[#FFFFFF]">
+              <div 
+                onClick={() => setActiveModalItem(activeItem)}
+                className="relative w-full h-[320px] sm:h-[440px] overflow-hidden bg-slate-50 cursor-pointer"
+              >
                 <div className="w-full h-full transition-transform duration-700 group-hover:scale-105">
                   <ProjectImage
                     src={activeItem.mediaUrl}
                     alt={activeItem.title}
                     title={activeItem.title}
                     badge={activeItem.tag}
-                    className="w-full h-full object-cover"
+                    className={`w-full h-full ${activeItem.mediaUrl.includes('flow') || activeItem.mediaUrl.includes('graph') ? 'object-contain p-2 bg-white' : 'object-cover'}`}
                   />
                 </div>
 
@@ -278,7 +271,7 @@ export const MediaSpotlightSection: React.FC<MediaSpotlightSectionProps> = ({ it
                 alt={nextItem.title}
                 title={nextItem.title}
                 badge={nextItem.tag}
-                className="w-full h-full object-cover"
+                className={`w-full h-full ${nextItem.mediaUrl.includes('flow') || nextItem.mediaUrl.includes('graph') ? 'object-contain p-2 bg-white' : 'object-cover'}`}
               />
               {nextItem.type === 'clip' && (
                 <div className="absolute inset-0 flex items-center justify-center bg-[#000080]/30">

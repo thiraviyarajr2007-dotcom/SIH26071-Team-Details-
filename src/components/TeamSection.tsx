@@ -100,7 +100,7 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ members }) => {
             </h3>
 
             <p className="text-sm font-medium text-[#000080]/85 max-w-2xl leading-relaxed">
-              Official innovation team behind <strong className="text-[#000080] font-extrabold">HydroTwin-AI</strong> — building an AI-powered hydrological digital twin for flood early-warning &amp; dynamic inundation prediction for the Chennai Metropolitan River Basin.
+              Official innovation team behind <strong className="text-[#000080] font-extrabold">HydroTwin-AI</strong> — building an AI-powered hydrological digital twin for flood early-warning &amp; dynamic inundation prediction for All-India River Basins &amp; dynamic catchments.
             </p>
 
             {/* Quick Team Tags */}
